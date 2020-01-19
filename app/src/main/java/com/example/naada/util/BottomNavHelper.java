@@ -11,6 +11,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.naada.R;
 import com.example.naada.view.MainActivity;
+import com.example.naada.view.ProfileActivity;
+import com.example.naada.view.ResidentsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavHelper extends androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior {
@@ -32,16 +34,16 @@ public class BottomNavHelper extends androidx.coordinatorlayout.widget.Coordinat
                         ((Activity) context).overridePendingTransition(0, 0);
                         ((Activity) context).finish();
                         break;
-//                    case R.id.bottom_nav_residents:
-//                        context.startActivity(new Intent(context, hanasuactivity.class));
-//                        ((Activity) context).overridePendingTransition(0, 0);
-//                        ((Activity) context).finish();
-//                        break;
-//                    case R.id.bottom_nav_profile:
-//                        context.startActivity(new Intent(context, ProfileActivity.class));
-//                        ((Activity) context).overridePendingTransition(0, 0);
-//                        ((Activity) context).finish();
-//                        break;
+                    case R.id.bottom_nav_residents:
+                        context.startActivity(new Intent(context, ResidentsActivity.class));
+                        ((Activity) context).overridePendingTransition(0, 0);
+                        ((Activity) context).finish();
+                        break;
+                    case R.id.bottom_nav_profile:
+                        context.startActivity(new Intent(context, ProfileActivity.class));
+                        ((Activity) context).overridePendingTransition(0, 0);
+                        ((Activity) context).finish();
+                        break;
                 }
                 return false;
             }
