@@ -7,7 +7,7 @@
 
 
 
-    <com.google.android.material.bottomappbar.BottomAppBar
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottonNav"
         android:layout_width="match_parent"
         android:layout_height="56dp"
