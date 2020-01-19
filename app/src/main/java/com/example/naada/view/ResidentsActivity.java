@@ -14,6 +14,7 @@ public class ResidentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_residents);
+        NavBarSetup();
     }
     private void NavBarSetup() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottonNav);
