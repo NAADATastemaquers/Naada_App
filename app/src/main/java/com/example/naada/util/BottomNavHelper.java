@@ -13,7 +13,14 @@ import com.example.naada.R;
 import com.example.naada.view.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BottomNavHelper extends CoordinatorLayout.Behavior {
+public class BottomNavHelper extends androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior {
+    public BottomNavHelper() {
+    }
+
+    public BottomNavHelper(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     public static void switchActivities(final Context context, BottomNavigationView view) {
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
