@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profle Activity"
+        android:text="Profile Activity"
         android:textSize="64sp"
         android:textStyle="bold"
         android:typeface="normal"
