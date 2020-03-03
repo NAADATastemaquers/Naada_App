@@ -7,22 +7,90 @@
     tools:context=".view.MainActivity">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        android:textSize="64sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
 
 
-    <include layout="@layout/bottom_navbar"></include>
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity"
+            android:textSize="64sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SlidingDrawer
+            android:id="@+id/slidingDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:content="@+id/content"
+            android:gravity="center_horizontal"
+            android:handle="@+id/handle"
+            android:orientation="vertical"
+            android:rotation="180">
+
+            <LinearLayout
+                android:id="@+id/handle"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+                android:gravity="right"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorPrimary"
+                    android:contentDescription="@string/app_name" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="45dp">
+
+                <RelativeLayout
+                    android:id="@+id/rel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:rotation="180">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="This is top navigation Drawer">
+
+                    </TextView>
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </SlidingDrawer>
+
+
+    </RelativeLayout>
+
+    <include layout="@layout/bottom_navbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
