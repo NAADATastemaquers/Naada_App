@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Naada</string>
+    <string name="next">Next</string>
+    <string name="hint">hint</string>
+    <string name="log_in">LOG IN</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="dont_have_an_account">Dont have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">Or</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in_small">Log in</string>
+    <string name="todo">TODO</string>
+    <string name="skip">SKIP</string>
 </resources>

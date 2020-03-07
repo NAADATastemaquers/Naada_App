@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.naada.R;
 import com.example.naada.view.MainActivity;
