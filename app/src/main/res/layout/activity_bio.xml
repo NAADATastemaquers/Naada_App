@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="126dp"
             android:layout_height="118dp"
-            android:background="@drawable/oceantrix">
+            android:background="@drawable/naada_logo">
 
         </ImageView>
         <LinearLayout
