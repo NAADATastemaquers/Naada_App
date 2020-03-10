@@ -16,4 +16,7 @@
     <string name="todo">TODO</string>
     <string name="skip">SKIP</string>
     <string name="textview">TextView</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="facebook_app_id">2518120015172652</string>
+    <string name="fb_login_protocol_scheme">fb2518120015172652</string>
 </resources>
