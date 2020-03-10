@@ -1,10 +1,14 @@
 package com.example.naada.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.naada.R;
@@ -20,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
     TextView name,email,id;
     GoogleSignInClient mGoogleSignInClient;
 
+    private Switch aSwitch;
 
+
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

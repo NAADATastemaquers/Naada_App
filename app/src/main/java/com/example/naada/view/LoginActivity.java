@@ -88,6 +88,7 @@ public class  LoginActivity extends AppCompatActivity {
         if(account!=null){
             Intent mainActivity=new Intent(LoginActivity.this,MainActivity.class);
             startActivity(mainActivity);
+            finish();
         }
     }
     private void signIn() {
