@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:enabled="true"
+            android:name="com.example.naada.view.service.BackgroundSoundService" />
+
         <activity android:name=".view.SignUp"/>
         <activity android:name=".view.MusicPlayerActivity"/>
         <activity android:name=".view.LoginActivity" />
@@ -21,8 +25,12 @@
         </activity>
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.ProfileActivity"/>
-        <activity android:name=".view.ResidentsActivity"/>
-
+        <receiver
+            android:enabled="true"
+            android:name=".view.service.NotificationActionServices"/>
+        <service
+            android:enabled="true"
+            android:name=".view.service.OnClearFromRecentService"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
