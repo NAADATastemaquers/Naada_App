@@ -7,11 +7,14 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.graphics.Color;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.SlidingDrawer;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
@@ -21,7 +24,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-@SuppressLint("Registered")
 public class MainActivity extends AppCompatActivity {
     TextView name,email,id;
     GoogleSignInClient mGoogleSignInClient;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     @SuppressLint("WrongConstant")
+    private BottomNavigationView bottomNavigationView;
+    Button GoToPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,12 +85,24 @@ public class MainActivity extends AppCompatActivity {
             name.setText(personName);
             id.setText(personId);
         }
+
+        GoToPlayer= findViewById(R.id.player);
+
+        GoToPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,MusicPlayerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
     private void NavBarSetup() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottonNav);
+        bottomNavigationView = findViewById(R.id.bottonNav);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavHelper());
-        BottomNavHelper.switchActivities(MainActivity.this, bottomNavigationView);
+        BottomNavHelper.switchActivities(MainActivity.this,bottomNavigationView);
     }
 }
