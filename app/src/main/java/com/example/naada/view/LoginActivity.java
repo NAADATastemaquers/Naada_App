@@ -46,31 +46,22 @@ public class  LoginActivity extends AppCompatActivity {
 
 
 
-//        signUpBtn=findViewById(R.id.signUptxt);
-//        signUpBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent signUppage=new Intent(LoginActivity.this,SignUp.class);
-//                startActivity(signUppage);
-//                finish();
-//            }
-//        });
-
         signUpBtn=findViewById(R.id.signUptxt);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signUppage=new Intent(LoginActivity.this,MainActivity.class);
+                Intent signUppage=new Intent(LoginActivity.this,SignUp.class);
                 startActivity(signUppage);
                 finish();
             }
         });
 
+
         musicBtn=findViewById(R.id.gotomusic);
         musicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent music=new Intent(LoginActivity.this,MainActivity.class);
+                Intent music=new Intent(LoginActivity.this,MusicPlayerActivity.class);
                 startActivity(music);
                 finish();
             }
