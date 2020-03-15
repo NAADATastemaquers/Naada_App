@@ -3,7 +3,9 @@ package com.example.naada.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -31,6 +33,24 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+
+        //Check if application is opened for First time
+        SharedPreferences preferences=getSharedPreferences
+                ("PREFERENCES",MODE_PRIVATE);
+        String FirstTime=preferences.getString
+                ("FirstTimeInstall","");
+
+        if(FirstTime.equals("Yes")){
+
+            //If  application was opened for the second Time
+            Intent intent=new Intent(IntroActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }else{
+            //Else
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("FirstTimeInstall","Yes");
+            editor.apply();
+        }
 
         mDotLayout=findViewById(R.id.dotsLayout);
         nextButton=findViewById(R.id.nextBtn);
@@ -92,6 +112,7 @@ public class IntroActivity extends AppCompatActivity {
 
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onPageSelected(final int i) {
             addDotsIndicator(i);
