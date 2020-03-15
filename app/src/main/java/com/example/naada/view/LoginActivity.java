@@ -70,7 +70,7 @@ public class  LoginActivity extends AppCompatActivity {
         musicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent music=new Intent(LoginActivity.this,MusicPlayerActivity.class);
+                Intent music=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(music);
                 finish();
             }
