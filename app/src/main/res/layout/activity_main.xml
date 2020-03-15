@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity"
-    android:background="?attr/backgroundColor">
-
+    android:background="?attr/backgroundColor"
+    tools:context=".view.MainActivity">
 
 
     <TextView
@@ -16,13 +15,13 @@
         android:layout_marginTop="76dp"
         android:text="TextView"
         android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintVertical_bias="0.9" />
 
     <TextView
         android:id="@+id/gname"
@@ -34,24 +33,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailId" />
+
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#d3d3d3"
         tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/gid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        android:textColor="#000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gname"
-        tools:ignore="NotSibling" />
+        <TextView
+            android:id="@+id/gid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gname"
+            tools:ignore="NotSibling" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -67,8 +67,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <SlidingDrawer
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <SlidingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/slidingDrawer"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
@@ -76,15 +75,14 @@
             android:gravity="center_horizontal"
             android:handle="@+id/handle"
             android:orientation="vertical"
-            android:rotation="180" >
+            android:rotation="180">
 
             <LinearLayout
                 android:id="@+id/handle"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
-                android:gravity="right"
                 android:background="@color/colorPrimary"
-                >
+                android:gravity="right">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -94,20 +92,33 @@
 
 
             </LinearLayout>
+
             <RelativeLayout
+                android:id="@+id/content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="45dp" >
+                android:layout_marginTop="45dp">
 
 
             </RelativeLayout>
 
         </SlidingDrawer>
+
+
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/bottom_navbar"></include>
 

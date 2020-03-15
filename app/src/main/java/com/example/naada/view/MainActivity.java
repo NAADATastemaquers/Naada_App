@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private Switch aSwitch;
 
 
-    @SuppressLint("WrongConstant")
-    private BottomNavigationView bottomNavigationView;
     Button GoToPlayer;
 
     @Override
@@ -87,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         GoToPlayer= findViewById(R.id.player);
-
         GoToPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
