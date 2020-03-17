@@ -3,9 +3,8 @@ package com.example.naada.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
-import android.widget.SlidingDrawer;
 
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
@@ -14,30 +13,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    SlidingDrawer slidingDrawer;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
-        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened()
-            {
 
-            }
-        });
-
-        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
-        {
-            @Override
-            public void onDrawerClosed()
-            {
-                slidingDrawer.setBackgroundColor(Color.TRANSPARENT);
-            }
-        });
         NavBarSetup();
     }
     private void NavBarSetup() {
