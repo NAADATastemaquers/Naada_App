@@ -13,7 +13,9 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.naada.R;
@@ -24,6 +26,7 @@ import java.io.IOException;
 public class MusicPlayerActivity extends AppCompatActivity implements playable {
     Intent svc;
     ImageButton play;
+    ImageButton message;
     Track track;
     ImageButton share;
     String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
@@ -36,11 +39,11 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
-
         artist=(TextView) findViewById(R.id.artist_name);
         details=(TextView) findViewById(R.id.other_details);
         song=(TextView) findViewById(R.id.song_name);
         share=(ImageButton) findViewById(R.id.share);
+        message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
 
         if (isMyServiceRunning(BackgroundSoundService.class)) {
@@ -101,6 +104,19 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         catch(Exception ignored){
 
         }
+        try{
+            message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
+                    startActivity(newIntent);
+                    finish();
+                }
+            });
+        }
+        catch(Exception ignored){
+
+        }
 
         mediaPlayer=new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -116,6 +132,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {

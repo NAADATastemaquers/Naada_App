@@ -169,12 +169,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="203dp"
         android:layout_height="40dp"
         android:layout_below="@+id/details"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,16 +187,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/ic_insert_comment_black_24dp">
-        </ImageButton>
+            android:background="@drawable/ic_insert_comment_black_24dp"></ImageButton>
 
         <ImageButton
             android:id="@+id/play"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_play_circle_outline_black_24dp">
-        </ImageButton>
+            android:src="@drawable/ic_play_circle_outline_black_24dp"></ImageButton>
 
         <ImageButton
 
@@ -203,8 +202,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/ic_share_black_24dp">
-        </ImageButton>
+            android:background="@drawable/ic_share_black_24dp"></ImageButton>
 
 
     </LinearLayout>
