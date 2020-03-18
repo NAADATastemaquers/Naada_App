@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.graphics.Color;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.SlidingDrawer;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -19,19 +25,40 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-@SuppressLint("Registered")
 public class MainActivity extends AppCompatActivity {
     TextView name,email,id;
     GoogleSignInClient mGoogleSignInClient;
 
-    private Switch aSwitch;
+
+    SlidingDrawer slidingDrawer;
+    private BottomNavigationView bottomNavigationView;
+    private TextView Theme;
 
 
-    @SuppressLint("WrongConstant")
+    LottieAnimationView GoToPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        slidingDrawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
+        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
+            @Override
+            public void onDrawerOpened()
+            {
+
+            }
+        });
+
+        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
+        {
+            @Override
+            public void onDrawerClosed()
+            {
+                slidingDrawer.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
         NavBarSetup();
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -58,12 +85,36 @@ public class MainActivity extends AppCompatActivity {
             name.setText(personName);
             id.setText(personId);
         }
+
+        GoToPlayer=findViewById(R.id.play);
+        GoToPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent music=new Intent(MainActivity.this,MusicPlayerActivity.class);
+                startActivity(music);
+            }
+        });
+
+
+
+
+
+        //Darkmode
+        Theme=findViewById(R.id.theme);
+        Theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dk=new Intent(MainActivity.this,NightMode.class);
+                startActivity(dk);
+            }
+        });
+
     }
     private void NavBarSetup() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottonNav);
+        bottomNavigationView = findViewById(R.id.bottonNav);
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavHelper());
-        BottomNavHelper.switchActivities(MainActivity.this, bottomNavigationView);
+        BottomNavHelper.switchActivities(MainActivity.this,bottomNavigationView);
     }
 }

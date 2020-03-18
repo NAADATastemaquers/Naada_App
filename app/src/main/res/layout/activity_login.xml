@@ -180,6 +180,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
+        android:id="@+id/fblogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -200,11 +201,13 @@
         android:id="@+id/gotomusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Goto Music player"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebookSigninBtn" />
 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.naada">
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SignUp" />
-        <activity android:name=".view.MusicPlayerActivity" />
+        <service
+            android:enabled="true"
+            android:name="com.example.naada.view.service.BackgroundSoundService" />
+
+        <activity android:name=".view.SignUp"/>
+        <activity android:name=".view.MusicPlayerActivity"/>
         <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.NightMode"
+            android:parentActivityName=".view.MainActivity"/>
         <activity android:name=".view.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.ProfileActivity" />
-        <activity android:name=".view.ResidentsActivity" />
+        <activity android:name=".view.ProfileActivity"/>
+        <activity android:name=".view.FacebookActivity"/>
+        <receiver
+            android:enabled="true"
+            android:name=".view.service.NotificationActionServices"/>
+        <service
+            android:enabled="true"
+            android:name=".view.service.OnClearFromRecentService"/>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -41,6 +51,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".view.ResidentsActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -3,7 +3,15 @@
     <color name="colorPrimary">#eb2429</color>
     <color name="colorPrimaryDark">#B81C20</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorAt">#D81B60</color>
+    <color name="mainText">#FF000000</color>
+    <color name="textAlt">#8D8F97</color>
+    <color name="mainBackground">#ffffff</color>
     <color name="button_text">#eb2429</color>
     <color name="colorTransparentWhite">#8C8C8C</color>
     <color name="Red">#D63447</color>
+    <color name="White">#ffffff</color>
+    <color name="music_1strow">#9babcb</color>
+    <color name="music_2ndrow">#666884</color>
+
 </resources>

@@ -5,7 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
-    android:background="?attr/backgroundColor">
+    android:background="@color/mainBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <SlidingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/slidingDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:content="@+id/content"
+            android:gravity="center_horizontal"
+            android:handle="@+id/handle"
+            android:orientation="vertical"
+            android:rotation="180"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/handle"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@color/colorPrimary" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="45dp">
+
+
+            </RelativeLayout>
+
+        </SlidingDrawer>
+    </RelativeLayout>
 
 
     <include
@@ -19,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_activity"
-        android:textColor="#000"
+        android:textColor="@color/mainText"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,9 +76,9 @@
         android:id="@+id/emailId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="170dp"
         android:text="TextView"
-        android:textColor="#000"
+        android:textColor="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="TextView"
-        android:textColor="#000"
+        android:textColor="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailId" />
@@ -54,21 +100,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="TextView"
-        android:textColor="#000"
+        android:textColor="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gname" />
 
-    <Switch
-        android:id="@+id/myswitch"
+    <TextView
+        android:id="@+id/theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Night mode"
-        android:textColor="#000"
+        android:layout_marginTop="36dp"
+        android:text="Theme Settings"
+        android:textColor="@color/mainText"
+        app:layout_constraintBottom_toTopOf="@+id/emailId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toEndOf="@+id/emailId"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/play"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:soundEffectsEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.745"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/play" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
