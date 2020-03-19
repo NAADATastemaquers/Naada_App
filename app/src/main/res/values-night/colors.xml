@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#eb2429</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="button_text">#eb2429</color>
+    <color name="colorTransparentWhite">#8C8C8C</color>
+    <color name="Red">#D63447</color>
+    <color name="mainText">#fff</color>
+    <color name="textAlt">#8D8F97</color>
+    <color name="mainBackground">#454A59</color>
+    <color name="music_1strow">#CACACA</color>
+    <color name="music_2ndrow">#fff</color>
+
+    <!--chat feature-->
+    <color name="chatBackground">#000000</color>
+    <color name="chatTextColor_right">#effffe</color>
+    <color name="chatTextColor_left">#ffffff</color>
+    <color name="bubble_right_color">#0084ff</color>
+    <color name="bubble_left_color">#333333</color>
+    <color name="chat_heading">#FFFFFF</color>
+    <color name="chat_suBHeading">#EAEAEA</color>
+</resources>
