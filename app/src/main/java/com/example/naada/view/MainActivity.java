@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
+        slidingDrawer =findViewById(R.id.slidingDrawer);
         slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
             @Override
             public void onDrawerOpened()
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent music=new Intent(MainActivity.this,MusicPlayerActivity.class);
                 startActivity(music);
+                finish();
             }
         });
 
