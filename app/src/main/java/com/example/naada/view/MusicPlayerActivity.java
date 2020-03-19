@@ -21,9 +21,14 @@ import android.widget.Toast;
 import com.example.naada.R;
 import com.example.naada.view.service.BackgroundSoundService;
 import com.example.naada.view.service.OnClearFromRecentService;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 import java.io.IOException;
 
-public class MusicPlayerActivity extends AppCompatActivity implements playable {
+public class MusicPlayerActivity extends AppCompatActivity implements playable, Dialog.DialogListener {
     Intent svc;
     ImageButton play;
     ImageButton message;
@@ -34,6 +39,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
     boolean isPlaying=false;
     TextView artist,details,song;
     NotificationManager notificationManager;
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,17 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         share=(ImageButton) findViewById(R.id.share);
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
 
         if (isMyServiceRunning(BackgroundSoundService.class)) {
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
@@ -108,9 +125,14 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
             message.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
-                    startActivity(newIntent);
-                    finish();
+                    if(acct!=null){
+                        Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
+                        startActivity(newIntent);
+                        finish();
+                    }else{
+                        Dialog dialog=new Dialog();
+                        dialog.show(getSupportFragmentManager(),"login dialog");
+                    }
                 }
             });
         }
@@ -133,6 +155,13 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onYesClicked() {
+        Intent login = new Intent(MusicPlayerActivity.this,LoginActivity.class);
+        startActivity(login);
+        finish();
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {

@@ -14,4 +14,12 @@
     <color name="music_1strow">#9babcb</color>
     <color name="music_2ndrow">#666884</color>
 
+        <!--chat feature-->
+    <color name="chatBackground">#ffffff</color>
+    <color name="chatTextColor_right">#edffff</color>
+    <color name="chatTextColor_left">#000000</color>
+    <color name="bubble_right_color">#0084ff</color>
+    <color name="bubble_left_color">#f0f0f0</color>
+    <color name="chat_heading">#666884</color>
+    <color name="chat_suBHeading">#9babcb</color>
 </resources>
