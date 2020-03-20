@@ -1,17 +1,12 @@
 package com.example.naada.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import android.graphics.Color;
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.SlidingDrawer;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
@@ -32,22 +27,22 @@ public class MainActivity extends AppCompatActivity {
 
     SlidingDrawer slidingDrawer;
     private BottomNavigationView bottomNavigationView;
-    private TextView Theme;
-
-
+    private Button Theme;
+    ImageView arrow;
     LottieAnimationView GoToPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        arrow=findViewById(R.id.arrow);
 
         slidingDrawer =findViewById(R.id.slidingDrawer);
         slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
             @Override
             public void onDrawerOpened()
             {
-
+                arrow.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
             }
         });
 
@@ -56,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerClosed()
             {
-                slidingDrawer.setBackgroundColor(Color.TRANSPARENT);
+                arrow.setImageResource(R.drawable.ic_arrow_drop_down);
             }
         });
         NavBarSetup();

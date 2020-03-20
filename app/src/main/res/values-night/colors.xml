@@ -16,8 +16,9 @@
     <color name="chatBackground">#000000</color>
     <color name="chatTextColor_right">#effffe</color>
     <color name="chatTextColor_left">#ffffff</color>
-    <color name="bubble_right_color">#0084ff</color>
-    <color name="bubble_left_color">#333333</color>
+    <color name="bubble_right_color">#666884</color>
+    <color name="bubble_left_color">#797A8C</color>
     <color name="chat_heading">#FFFFFF</color>
     <color name="chat_suBHeading">#EAEAEA</color>
+    <color name="nav_bar">#919090</color>
 </resources>
