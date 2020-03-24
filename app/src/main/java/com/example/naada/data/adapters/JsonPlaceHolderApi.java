@@ -1,4 +1,6 @@
-package com.example.naada.view;
+package com.example.naada.data.adapters;
+
+import com.example.naada.data.models.Post;
 
 import java.util.List;
 

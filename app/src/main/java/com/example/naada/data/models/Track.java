@@ -1,4 +1,4 @@
-package com.example.naada.view;
+package com.example.naada.data.models;
 
 public class Track {
     // private String company;

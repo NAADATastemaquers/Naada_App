@@ -1,4 +1,4 @@
-package com.example.naada.view;
+package com.example.naada.data.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.naada.R;
+import com.example.naada.data.models.ResponseMessage;
 
 import java.util.List;
 
