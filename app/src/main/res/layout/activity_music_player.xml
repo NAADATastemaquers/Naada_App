@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MusicPlayerActivity">
+    tools:context=".view.MusicPlayerActivity"
+    android:background="@color/mainBackground">
 
     <TextView
         android:id="@+id/logo"
@@ -66,7 +67,7 @@
             android:lineHeight="24sp"
             android:lineSpacingExtra="12sp"
             android:text="372k "
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -79,7 +80,7 @@
             android:lineHeight="22sp"
             android:lineSpacingExtra="10sp"
             android:text="Listening now"
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -91,7 +92,7 @@
             android:lineHeight="22sp"
             android:lineSpacingExtra="10sp"
             android:text="4.8"
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -104,7 +105,7 @@
             android:lineHeight="22sp"
             android:lineSpacingExtra="10sp"
             android:text="Rating"
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -136,7 +137,7 @@
             android:lineHeight="26sp"
             android:lineSpacingExtra="10sp"
             android:text="The Neutral Dreams"
-            android:textColor="#666884"
+            android:textColor="@color/music_2ndrow"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -150,7 +151,7 @@
             android:lineHeight="26sp"
             android:lineSpacingExtra="10sp"
             android:text="Ocean Trix"
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="16sp" />
 
         <TextView
@@ -163,17 +164,18 @@
             android:lineHeight="26sp"
             android:lineSpacingExtra="16sp"
             android:text="Other details here"
-            android:textColor="#9babcb"
+            android:textColor="@color/music_1strow"
             android:textSize="11sp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="203dp"
         android:layout_height="40dp"
         android:layout_below="@+id/details"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -185,16 +187,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/ic_insert_comment_black_24dp">
-        </ImageButton>
+            android:background="@drawable/ic_insert_comment_black_24dp"></ImageButton>
 
         <ImageButton
             android:id="@+id/play"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_play_circle_outline_black_24dp">
-        </ImageButton>
+            android:src="@drawable/ic_play_circle_outline_black_24dp"></ImageButton>
 
         <ImageButton
 
@@ -202,8 +202,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/ic_share_black_24dp">
-        </ImageButton>
+            android:background="@drawable/ic_share_black_24dp"></ImageButton>
 
 
     </LinearLayout>

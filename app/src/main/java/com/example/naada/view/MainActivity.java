@@ -1,21 +1,18 @@
 package com.example.naada.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import android.graphics.Color;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.SlidingDrawer;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,19 +25,36 @@ public class MainActivity extends AppCompatActivity {
     TextView name,email,id;
     GoogleSignInClient mGoogleSignInClient;
 
+
     SlidingDrawer slidingDrawer;
     private BottomNavigationView bottomNavigationView;
-    private Switch aSwitch;
-
-
-    Button GoToPlayer;
+    private Button Theme;
+    ImageView arrow;
+    LottieAnimationView GoToPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        arrow=findViewById(R.id.arrow);
 
+        slidingDrawer =findViewById(R.id.slidingDrawer);
+        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
+            @Override
+            public void onDrawerOpened()
+            {
+                arrow.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+            }
+        });
 
+        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
+        {
+            @Override
+            public void onDrawerClosed()
+            {
+                arrow.setImageResource(R.drawable.ic_arrow_drop_down);
+            }
+        });
         NavBarSetup();
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -68,15 +82,29 @@ public class MainActivity extends AppCompatActivity {
             id.setText(personId);
         }
 
-        GoToPlayer= findViewById(R.id.player);
+        GoToPlayer=findViewById(R.id.play);
         GoToPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MusicPlayerActivity.class);
-                startActivity(intent);
+                Intent music=new Intent(MainActivity.this,MusicPlayerActivity.class);
+                startActivity(music);
+                finish();
             }
         });
 
+
+
+
+
+        //Darkmode
+        Theme=findViewById(R.id.theme);
+        Theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dk=new Intent(MainActivity.this,NightMode.class);
+                startActivity(dk);
+            }
+        });
 
     }
     private void NavBarSetup() {

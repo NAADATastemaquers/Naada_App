@@ -17,8 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-//import com.airbnb.lottie.LottieAnimationView;
-
 public class  LoginActivity extends AppCompatActivity {
 
     private TextView signUpBtn;
@@ -26,6 +24,7 @@ public class  LoginActivity extends AppCompatActivity {
     private Button googleSignin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=0;
+    Button Facebook;
 
 
     @Override
@@ -78,8 +77,17 @@ public class  LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+        //facebook
+        Facebook=findViewById(R.id.fblogin);
+        Facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fb=new Intent(LoginActivity.this,FacebookActivity.class);
+                startActivity(fb);
+            }
+        });
+    }
 
 
     @Override
@@ -116,6 +124,7 @@ public class  LoginActivity extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             Intent loginMainActivity=new Intent(LoginActivity.this,MainActivity.class);
             startActivity(loginMainActivity);
+            finish();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

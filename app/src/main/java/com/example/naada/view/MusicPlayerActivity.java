@@ -13,17 +13,25 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.naada.R;
 import com.example.naada.view.service.BackgroundSoundService;
 import com.example.naada.view.service.OnClearFromRecentService;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 import java.io.IOException;
 
-public class MusicPlayerActivity extends AppCompatActivity implements playable {
+public class MusicPlayerActivity extends AppCompatActivity implements playable, Dialog.DialogListener {
     Intent svc;
     ImageButton play;
+    ImageButton message;
     Track track;
     ImageButton share;
     String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
@@ -31,17 +39,29 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
     boolean isPlaying=false;
     TextView artist,details,song;
     NotificationManager notificationManager;
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
-
         artist=(TextView) findViewById(R.id.artist_name);
         details=(TextView) findViewById(R.id.other_details);
         song=(TextView) findViewById(R.id.song_name);
         share=(ImageButton) findViewById(R.id.share);
+        message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
 
         if (isMyServiceRunning(BackgroundSoundService.class)) {
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
@@ -101,6 +121,24 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         catch(Exception ignored){
 
         }
+        try{
+            message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(acct!=null){
+                        Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
+                        startActivity(newIntent);
+                        finish();
+                    }else{
+                        Dialog dialog=new Dialog();
+                        dialog.show(getSupportFragmentManager(),"login dialog");
+                    }
+                }
+            });
+        }
+        catch(Exception ignored){
+
+        }
 
         mediaPlayer=new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -116,6 +154,14 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void onYesClicked() {
+        Intent login = new Intent(MusicPlayerActivity.this,LoginActivity.class);
+        startActivity(login);
+        finish();
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
