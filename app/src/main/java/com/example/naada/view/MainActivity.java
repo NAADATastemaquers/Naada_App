@@ -40,23 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
-        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened()
-            {
 
-            }
-        });
-
-        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
-        {
-            @Override
-            public void onDrawerClosed()
-            {
-                slidingDrawer.setBackgroundColor(Color.TRANSPARENT);
-            }
-        });
         NavBarSetup();
 
         // Configure sign-in to request the user's ID, email address, and basic
