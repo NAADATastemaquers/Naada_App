@@ -1,4 +1,4 @@
-package com.example.naada.view;
+package com.example.naada.data.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.naada.R;
+import com.example.naada.data.models.ScreenItem;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.naada.view;
+package com.example.naada.util;
 
 import android.content.Context;
 import android.content.DialogInterface;

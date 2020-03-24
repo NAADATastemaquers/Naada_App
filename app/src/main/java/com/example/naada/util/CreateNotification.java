@@ -1,4 +1,4 @@
-package com.example.naada.view;
+package com.example.naada.util;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.naada.R;
+import com.example.naada.data.models.Track;
 import com.example.naada.view.service.NotificationActionServices;
 
 public class CreateNotification {

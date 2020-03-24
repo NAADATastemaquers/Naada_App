@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.naada.R;
+import com.example.naada.data.adapters.IntroViewPagerAdapter;
+import com.example.naada.data.models.ScreenItem;
 
 import java.util.ArrayList;
 import java.util.List;

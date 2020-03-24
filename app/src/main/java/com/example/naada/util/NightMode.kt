@@ -1,4 +1,4 @@
-package com.example.naada.view
+package com.example.naada.util
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences

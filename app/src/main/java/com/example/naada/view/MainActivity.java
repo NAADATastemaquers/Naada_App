@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.SlidingDrawer;
@@ -15,6 +14,7 @@ import android.widget.Button;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
+import com.example.naada.util.NightMode;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dk=new Intent(MainActivity.this,NightMode.class);
+                Intent dk=new Intent(MainActivity.this, NightMode.class);
                 startActivity(dk);
             }
         });
