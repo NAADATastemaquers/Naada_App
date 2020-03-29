@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.naada">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,7 +15,8 @@
             android:enabled="true" />
 
         <activity android:name=".view.SignUp" />
-        <activity android:name=".view.MusicPlayerActivity" />
+        <activity android:name=".view.MusicPlayerActivity"
+            android:parentActivityName=".view.MainActivity"/>
         <activity android:name=".view.LoginActivity" />
         <activity
             android:name=".util.NightMode"
@@ -52,7 +53,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="@string/fb_login_protocol_scheme" />
+                <data android:scheme="@string/fb_login_protocol_scheme"
+                    tools:ignore="ManifestResource" />
             </intent-filter>
         </activity>
         <activity android:name=".view.ResidentsActivity" />
