@@ -47,6 +47,7 @@ public class IntroActivity extends AppCompatActivity {
             //If  application was opened for the second Time
             Intent intent=new Intent(IntroActivity.this,LoginActivity.class);
             startActivity(intent);
+            finish();
         }else{
             //Else
             SharedPreferences.Editor editor=preferences.edit();

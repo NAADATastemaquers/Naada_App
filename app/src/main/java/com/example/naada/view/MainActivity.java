@@ -38,23 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         arrow=findViewById(R.id.arrow);
 
-        slidingDrawer =findViewById(R.id.slidingDrawer);
-        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened()
-            {
-                arrow.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
-            }
-        });
-
-        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
-        {
-            @Override
-            public void onDrawerClosed()
-            {
-                arrow.setImageResource(R.drawable.ic_arrow_drop_down);
-            }
-        });
         NavBarSetup();
 
         // Configure sign-in to request the user's ID, email address, and basic
