@@ -5,31 +5,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".view.MainActivity"><![CDATA[
     android:background="@color/mainBackground"
     android:id="@+id/main"
     tools:context=".view.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <SlidingDrawer
+            android:id="@+id/slidingDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:content="@+id/content"
+            android:elevation="100dp"
+            android:gravity="center_horizontal"
+            android:handle="@+id/handle"
+            android:orientation="vertical"
+            android:rotation="180"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/handle"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="385dp"
+                    android:layout_marginRight="3870dp"
+                    android:background="@drawable/custom_button_google"
+                    android:rotation="180"
+                    android:src="@drawable/ic_arrow_drop_down" />
 
 
+            </LinearLayout>
 
-    ]]>
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="45dp"
+                android:rotation="180"
+                android:elevation="100dp">
 
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:background="@drawable/custom_button_google"
-        android:rotation="180"
-        android:src="@drawable/ic_arrow_drop_down"
-        app:layout_constraintBottom_toTopOf="@+id/include"
-        app:layout_constraintEnd_toStartOf="@+id/include"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toEndOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.927" />
+                <Button
+                    android:id="@+id/theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="311dp"
+                    android:layout_marginLeft="311dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="Theme" />
+
+
+            </RelativeLayout>
+
+        </SlidingDrawer>
+    </RelativeLayout>
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/bottom_navbar"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="68dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -50,13 +105,9 @@
         android:layout_marginTop="170dp"
         android:text="TextView"
         android:textColor="@color/mainText"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/gname"
@@ -69,9 +120,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailId" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/bottom_navbar"></include>
+    <TextView
+        android:id="@+id/gid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        android:textColor="@color/mainText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gname" />
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/play"
@@ -88,41 +147,5 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/play" />
 
-    <TextView
-        android:id="@+id/gid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/include"
-        app:layout_constraintStart_toEndOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/gname"
-        app:layout_constraintVertical_bias="0.104" />
-    <RelativeLayout
-        android:id="@+id/content"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="45dp"
-        android:rotation="180"
-        android:elevation="100dp">
-
-        <Button
-            android:id="@+id/theme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="311dp"
-            android:layout_marginLeft="311dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="40dp"
-            android:text="Theme" />
-
-
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
