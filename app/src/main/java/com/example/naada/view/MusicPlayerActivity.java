@@ -137,7 +137,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             registerReceiver(broadcastReceiver,new IntentFilter("TRACKS_TRACKS"));
             startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
         }
-        play=(ImageButton) findViewById(R.id.play);
+        play=findViewById(R.id.play);
         try{
             if(BackgroundSoundService.player.isPlaying())
             {
