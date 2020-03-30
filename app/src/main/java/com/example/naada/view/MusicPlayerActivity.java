@@ -282,6 +282,5 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             notificationManager.cancelAll();
         }
-        unregisterReceiver(broadcastReceiver);
     }
 }
