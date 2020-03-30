@@ -1,4 +1,5 @@
 package com.example.naada.view;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
@@ -12,10 +13,14 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.data.models.Track;
 import com.example.naada.data.models.playable;
@@ -40,6 +45,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     ImageButton play;
     ImageButton message;
     Track track;
+    ImageView album_image;
     ImageButton share;
     String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
     MediaPlayer mediaPlayer;
@@ -47,6 +53,18 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     TextView artist,details,song;
     NotificationManager notificationManager;
     GoogleSignInClient mGoogleSignInClient;
+
+    private static final String KEY_ALBUM="album";
+    private static final String KEY_ARTIST= "artist";
+    private static final String KEY_DESCRIPTION= "description";
+    private static final String KEY_IMAGE="image";
+    private static final String KEY_NAME="name";
+    private static final String KEY_URL="url";
+
+    private static final String TAG = "MusicPlayerActivity";
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference contentRef= db.collection("songs").document("song");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +76,57 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         share=(ImageButton) findViewById(R.id.share);
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
+        album_image = findViewById(R.id.image);
+
+
+        try {
+            contentRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()){
+                        final String song_name =documentSnapshot.getString(KEY_NAME);
+                        final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+                        String album_name =documentSnapshot.getString(KEY_ALBUM);
+                        String album_image_url = documentSnapshot.getString(KEY_IMAGE);
+                        final String spotify_url = documentSnapshot.getString(KEY_URL);
+                        Log.d(TAG, "song name: "+song_name);
+                        Log.d(TAG, "artist_name: "+artist_name);
+                        Log.d(TAG, "album_name: "+album_name);
+                        Log.d(TAG, "album_image_url: "+album_image_url);
+                        song.setText(song_name);
+                        artist.setText(artist_name);
+                        details.setText(album_name);
+                        Glide.with(MusicPlayerActivity.this).load(album_image_url).centerCrop().load(album_image_url).into(album_image);
+                        try{
+                            share.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent myintent=new Intent(Intent.ACTION_SEND);
+                                    myintent.setType("text/plain");
+                                    String sharesub="Hey I'm listening to " + song_name + "from " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
+                                    myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
+                                    startActivity(Intent.createChooser(myintent,"share using"));
+                                }
+                            });
+                        }
+                        catch(Exception ignored){
+
+                        }
+                    }else{
+                        Toast.makeText(MusicPlayerActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -111,23 +180,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             });
         }catch(Exception ignored){
         }
-        try{
-            share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent myintent=new Intent(Intent.ACTION_SEND);
-                    myintent.setType("text/plain");
-                    String shareBody=url;
-                    String sharesub="your Subject here";
-                    myintent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
-                    myintent.putExtra(Intent.EXTRA_TEXT,shareBody);
-                    startActivity(Intent.createChooser(myintent,"share using"));
-                }
-            });
-        }
-        catch(Exception ignored){
 
-        }
         try{
             message.setOnClickListener(new View.OnClickListener() {
                 @Override
