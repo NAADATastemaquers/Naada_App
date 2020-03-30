@@ -19,4 +19,5 @@
     <string name="main_activity">Main Activity</string>
     <string name="facebook_app_id">2957008511061182</string>
     <string name="fb_login_protocol_scheme">fb2957008511061182</string>
+    <string name="residents">Residents</string>
 </resources>

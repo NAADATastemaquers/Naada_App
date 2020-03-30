@@ -58,8 +58,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ResidentsActivity" />
+        <activity android:name=".view.artist_bio"/>
 
-        <activity android:name=".view.ResidentsActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
