@@ -207,5 +207,17 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/backBttn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintEnd_toStartOf="@+id/logo"
+        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
