@@ -104,7 +104,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                             public void onClick(View view) {
                                 Intent myintent=new Intent(Intent.ACTION_SEND);
                                 myintent.setType("text/plain");
-                                String sharesub="Hey I'm listening to " + song_name + "from  " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
+                                String sharesub="Hey I'm listening to " + song_name + " from " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
                                 myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
                                 startActivity(Intent.createChooser(myintent,"share using"));
                             }
