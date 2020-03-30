@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.naada.R;
+import com.example.naada.data.adapters.JsonPlaceHolderApi;
+import com.example.naada.data.adapters.MessageAdapter;
+import com.example.naada.data.models.Post;
+import com.example.naada.data.models.ResponseMessage;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
+import com.example.naada.util.NightMode;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,23 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         arrow=findViewById(R.id.arrow);
 
-        slidingDrawer =findViewById(R.id.slidingDrawer);
-        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened()
-            {
-                arrow.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
-            }
-        });
-
-        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener()
-        {
-            @Override
-            public void onDrawerClosed()
-            {
-                arrow.setImageResource(R.drawable.ic_arrow_drop_down);
-            }
-        });
         NavBarSetup();
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -87,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent music=new Intent(MainActivity.this,MusicPlayerActivity.class);
                 startActivity(music);
+                finish();
             }
         });
 
@@ -99,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dk=new Intent(MainActivity.this,NightMode.class);
+                Intent dk=new Intent(MainActivity.this, NightMode.class);
                 startActivity(dk);
             }
         });
