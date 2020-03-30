@@ -1,5 +1,6 @@
 package com.example.naada.view;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
@@ -36,7 +37,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.IOException;
 
@@ -79,52 +82,89 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         album_image = findViewById(R.id.image);
 
 
-        try {
-            contentRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.exists()){
-                        final String song_name =documentSnapshot.getString(KEY_NAME);
-                        final String artist_name =documentSnapshot.getString(KEY_ARTIST);
-                        String album_name =documentSnapshot.getString(KEY_ALBUM);
-                        String album_image_url = documentSnapshot.getString(KEY_IMAGE);
-                        final String spotify_url = documentSnapshot.getString(KEY_URL);
-                        Log.d(TAG, "song name: "+song_name);
-                        Log.d(TAG, "artist_name: "+artist_name);
-                        Log.d(TAG, "album_name: "+album_name);
-                        Log.d(TAG, "album_image_url: "+album_image_url);
-                        song.setText(song_name);
-                        artist.setText(artist_name);
-                        details.setText(album_name);
-                        Glide.with(MusicPlayerActivity.this).load(album_image_url).centerCrop().load(album_image_url).into(album_image);
-                        try{
-                            share.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent myintent=new Intent(Intent.ACTION_SEND);
-                                    myintent.setType("text/plain");
-                                    String sharesub="Hey I'm listening to " + song_name + "from " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
-                                    myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
-                                    startActivity(Intent.createChooser(myintent,"share using"));
-                                }
-                            });
-                        }
-                        catch(Exception ignored){
+//        try {
+//            contentRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                @Override
+//                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                    if(documentSnapshot.exists()){
+//                        final String song_name =documentSnapshot.getString(KEY_NAME);
+//                        final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+//                        String album_name =documentSnapshot.getString(KEY_ALBUM);
+//                        String album_image_url = documentSnapshot.getString(KEY_IMAGE);
+//                        final String spotify_url = documentSnapshot.getString(KEY_URL);
+//                        Log.d(TAG, "song name: "+song_name);
+//                        Log.d(TAG, "artist_name: "+artist_name);
+//                        Log.d(TAG, "album_name: "+album_name);
+//                        Log.d(TAG, "album_image_url: "+album_image_url);
+//                        song.setText(song_name);
+//                        artist.setText(artist_name);
+//                        details.setText(album_name);
+//                        Glide.with(MusicPlayerActivity.this).load(album_image_url).centerCrop().load(album_image_url).into(album_image);
+//                        try{
+//                            share.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Intent myintent=new Intent(Intent.ACTION_SEND);
+//                                    myintent.setType("text/plain");
+//                                    String sharesub="Hey I'm listening to " + song_name + "from " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
+//                                    myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
+//                                    startActivity(Intent.createChooser(myintent,"share using"));
+//                                }
+//                            });
+//                        }
+//                        catch(Exception ignored){
+//
+//                        }
+//                    }else{
+//                        Toast.makeText(MusicPlayerActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//
+//                }
+//            });
+//        }catch (Exception e){}
 
-                        }
-                    }else{
-                        Toast.makeText(MusicPlayerActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
+
+        contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(documentSnapshot.exists()){
+                    final String song_name =documentSnapshot.getString(KEY_NAME);
+                    final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+                    String album_name =documentSnapshot.getString(KEY_ALBUM);
+                    String album_image_url = documentSnapshot.getString(KEY_IMAGE);
+                    final String spotify_url = documentSnapshot.getString(KEY_URL);
+                    Log.d(TAG, "song name: "+song_name);
+                    Log.d(TAG, "artist_name: "+artist_name);
+                    Log.d(TAG, "album_name: "+album_name);
+                    Log.d(TAG, "album_image_url: "+album_image_url);
+                    song.setText(song_name);
+                    artist.setText(artist_name);
+                    details.setText(album_name);
+                    Glide.with(MusicPlayerActivity.this).load(album_image_url).centerCrop().load(album_image_url).into(album_image);
+                    try{
+                        share.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent myintent=new Intent(Intent.ACTION_SEND);
+                                myintent.setType("text/plain");
+                                String sharesub="Hey I'm listening to " + song_name + "from  " + artist_name + "\n\n" + "Find it here "+ spotify_url  ;
+                                myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
+                                startActivity(Intent.createChooser(myintent,"share using"));
+                            }
+                        });
                     }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
+                    catch(Exception ignored){
 
+                    }
+                }else{
+                    Toast.makeText(MusicPlayerActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
                 }
-            });
-        }catch (Exception e){
-
-        }
+            }
+        });
 
 
 
