@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="400dp"
             android:content="@+id/content"
-            android:elevation="100dp"
+            android:elevation="200dp"
             android:gravity="center_horizontal"
             android:handle="@+id/handle"
             android:orientation="vertical"
@@ -93,6 +93,7 @@
         android:text="@string/main_activity"
         android:textColor="@color/mainText"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -102,6 +103,7 @@
         android:id="@+id/emailId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginTop="170dp"
         android:text="TextView"
         android:textColor="@color/mainText"
@@ -115,6 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="TextView"
+        android:visibility="gone"
         android:textColor="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,26 +129,69 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="TextView"
+        android:visibility="gone"
         android:textColor="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gname" />
 
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/play"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:soundEffectsEnabled="true"
+    <ImageView
+        android:id="@+id/imageAlbum"
+        android:layout_width="385dp"
+        android:layout_height="405dp"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/player"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.745"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/play" />
+        app:layout_constraintTop_toTopOf="@+id/drawer_layout"
+        app:layout_constraintVertical_bias="0.55"></ImageView>
+
+
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/play"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:soundEffectsEnabled="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.979"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView7"-->
+<!--        app:layout_constraintVertical_bias="0.745"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/play" />-->
+
+    <ImageView
+        android:id="@+id/play_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageAlbum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageAlbum"
+        app:layout_constraintVertical_bias="0.942"
+        app:srcCompat="@drawable/play_button"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="TASTEMAQERS"
+        android:textColor="@color/title_main"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageAlbum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

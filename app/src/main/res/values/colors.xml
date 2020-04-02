@@ -13,6 +13,7 @@
     <color name="White">#ffffff</color>
     <color name="music_1strow">#9babcb</color>
     <color name="music_2ndrow">#666884</color>
+    <color name="title_main">#D63447</color>
 
         <!--chat feature-->
     <color name="chatBackground">#ffffff</color>

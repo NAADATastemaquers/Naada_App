@@ -1,5 +1,4 @@
 package com.example.naada.view;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,8 +32,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -80,7 +77,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         share=(ImageButton) findViewById(R.id.share);
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
-        album_image = findViewById(R.id.image);
+        album_image = findViewById(R.id.imageAlbum);
         BackBtn=findViewById(R.id.backBttn);
 
         contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
