@@ -187,7 +187,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                     if(acct!=null){
                         Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
                         startActivity(newIntent);
-                        finish();
                     }else{
                         Dialog dialog=new Dialog();
                         dialog.show(getSupportFragmentManager(),"login dialog");

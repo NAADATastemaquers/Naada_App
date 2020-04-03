@@ -51,7 +51,6 @@ public class  LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signUppage=new Intent(LoginActivity.this,SignUp.class);
                 startActivity(signUppage);
-                finish();
             }
         });
 
@@ -62,7 +61,6 @@ public class  LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent music=new Intent(LoginActivity.this,MusicPlayerActivity.class);
                 startActivity(music);
-                finish();
             }
         });
 
