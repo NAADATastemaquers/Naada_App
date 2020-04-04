@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.naada.R;
@@ -19,11 +22,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProfileActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
     private Button gSignOut;
+    private FloatingActionButton mMainFab,mDarkFab,mMusicFab;
+    private TextView mDarkFabText,mMusicFabText;
+    private Boolean isOpen;
+    private Animation mFabOpen,mFabClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,14 @@ public class ProfileActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        mMainFab=findViewById(R.id.main_fab);
+        mDarkFab=findViewById(R.id.dark_fab);
+        mMusicFab=findViewById(R.id.music_fab);
+        mDarkFabText=findViewById(R.id.dark_fab_text);
+        mMusicFabText=findViewById(R.id.music_fab_text);
+        mFabOpen= AnimationUtils.loadAnimation(ProfileActivity.this,R.anim.fab_open);
+        mFabClose=AnimationUtils.loadAnimation(ProfileActivity.this,R.anim.fab_close);
+
         gSignOut=findViewById(R.id.signOut);
         gSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +69,57 @@ public class ProfileActivity extends AppCompatActivity {
                         finish();
                         break;
                 }
+            }
+        });
+
+        mDarkFab.setVisibility(View.INVISIBLE);
+        mMusicFab.setVisibility(View.INVISIBLE);
+        mDarkFabText.setVisibility(View.INVISIBLE);
+        mMusicFabText.setVisibility(View.INVISIBLE);
+        isOpen=false;
+        mMainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isOpen){
+                    mDarkFab.setAnimation(mFabClose);
+                    mMusicFab.setAnimation(mFabClose);
+                    mDarkFabText.setVisibility(View.INVISIBLE);
+                    mMusicFabText.setVisibility(View.INVISIBLE);
+                    isOpen=false;
+                }else{
+                    mDarkFab.setAnimation(mFabOpen);
+                    mMusicFab.setAnimation(mFabOpen);
+                    mDarkFabText.setVisibility(View.VISIBLE);
+                    mMusicFabText.setVisibility(View.VISIBLE);
+                    isOpen=true;
+                }
+            }
+        });
+
+        //Darkmode
+        mDarkFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dk=new Intent(ProfileActivity.this, NightMode.class);
+                startActivity(dk);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
+
+        mMusicFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent music_activity=new Intent(ProfileActivity.this,MusicPlayerActivity.class);
+                startActivity(music_activity);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
             }
         });
 

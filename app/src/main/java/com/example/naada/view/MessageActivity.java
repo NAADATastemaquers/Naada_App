@@ -41,7 +41,6 @@ public class MessageActivity extends AppCompatActivity {
     List<ResponseMessage> responseMessageList;
     String message="";
     String id="";
-    private ImageView backBtn;
     GoogleSignInClient mGoogleSignInClient;
     String name;
 
@@ -53,7 +52,6 @@ public class MessageActivity extends AppCompatActivity {
         userInput = findViewById(R.id.userInput);
         recyclerView = findViewById(R.id.conversation);
         responseMessageList = new ArrayList<>();
-        backBtn=findViewById(R.id.backBtn);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -67,15 +65,6 @@ public class MessageActivity extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         assert acct != null;
         name= acct.getDisplayName();
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back=new Intent(MessageActivity.this,MusicPlayerActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
 
         messageAdapter = new MessageAdapter(responseMessageList, this);
         try{

@@ -9,42 +9,32 @@
     android:id="@+id/main"
     tools:context=".view.MainActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/bottom_navbar"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="68dp" />
+
     <ImageView
         android:id="@+id/imageAlbum"
         android:layout_width="385dp"
         android:layout_height="405dp"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
         android:background="@drawable/player"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/drawer_layout"
-        app:layout_constraintVertical_bias="0.55"
         tools:targetApi="lollipop" />
 
-
-    <!--    <com.airbnb.lottie.LottieAnimationView-->
-    <!--        android:id="@+id/play"-->
-    <!--        android:layout_width="70dp"-->
-    <!--        android:layout_height="70dp"-->
-    <!--        android:soundEffectsEnabled="true"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.979"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView7"-->
-    <!--        app:layout_constraintVertical_bias="0.745"-->
-    <!--        app:lottie_autoPlay="true"-->
-    <!--        app:lottie_loop="true"-->
-    <!--        app:lottie_rawRes="@raw/play" />-->
 
     <ImageView
         android:id="@+id/play_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:elevation="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageAlbum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -52,16 +42,17 @@
         app:layout_constraintTop_toTopOf="@+id/imageAlbum"
         app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/play_button"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:text="TASTEMAQERS"
+        android:text="@string/tastemaqers"
         android:textColor="@color/title_main"
-        android:textSize="22sp"
+        android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/imageAlbum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,127 +65,96 @@
         android:elevation="200dp"
         tools:ignore="MissingConstraints"
         tools:targetApi="lollipop">
-
-        <SlidingDrawer
-            android:id="@+id/slidingDrawer"
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:content="@+id/content"
-            android:gravity="center_horizontal"
-            android:handle="@+id/handle"
-            android:orientation="vertical"
-            android:rotation="180"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:id="@+id/handle"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-
-                android:gravity="right">
-
-                <ImageView
-                    android:id="@+id/arrow"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="385dp"
-                    android:layout_marginRight="3870dp"
-                    android:background="@drawable/custom_button_google"
-                    android:rotation="180"
-                    android:src="@drawable/ic_arrow_drop_down" />
-
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/content"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="45dp"
-                android:rotation="180"
-                android:elevation="100dp">
-
-                <Button
-                    android:id="@+id/theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="311dp"
-                    android:layout_marginLeft="311dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="40dp"
-                    android:text="Theme" />
-
-
-            </RelativeLayout>
-
-        </SlidingDrawer>
     </RelativeLayout>
 
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/bottom_navbar"
-        tools:layout_editor_absoluteX="-7dp"
-        tools:layout_editor_absoluteY="68dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity"
-        android:textColor="@color/mainText"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/emailId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="170dp"
-        android:text="TextView"
-        android:textColor="@color/mainText"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/gname"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="10dp"
+            android:src="@drawable/icon_add"
+            app:backgroundTint="@color/button_text"
+            app:fabSize="auto"
+            app:rippleColor="@color/Red" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/music_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        android:visibility="gone"
-        android:textColor="@color/mainText"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        app:backgroundTint="@color/button_text"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/container_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailId" />
+        app:rippleColor="@color/Red"
+        app:srcCompat="@drawable/ic_music_note"
+        tools:ignore="VectorDrawableCompat"
+        android:focusable="true" />
 
-    <TextView
-        android:id="@+id/gid"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dark_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        android:visibility="gone"
-        android:textColor="@color/mainText"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="14dp"
+        android:clickable="true"
+        app:backgroundTint="@color/button_text"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/music_fab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gname" />
+        app:rippleColor="@color/Red"
+        app:srcCompat="@drawable/ic_wb_sunny"
+        android:focusable="true"
+        tools:ignore="VectorDrawableCompat" />
 
+    <TextView
+        android:id="@+id/dark_fab_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/fab_text_bg"
+        android:paddingLeft="16dp"
+        android:paddingTop="6dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="6dp"
+        android:text="@string/dark_mode"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/dark_fab"
+        app:layout_constraintEnd_toStartOf="@+id/dark_fab"
+        app:layout_constraintTop_toTopOf="@+id/dark_fab" />
 
-
+    <TextView
+        android:id="@+id/music_fab_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/fab_text_bg"
+        android:paddingLeft="16dp"
+        android:paddingTop="6dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="6dp"
+        android:text="@string/music"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/music_fab"
+        app:layout_constraintEnd_toStartOf="@+id/music_fab"
+        app:layout_constraintTop_toTopOf="@+id/music_fab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

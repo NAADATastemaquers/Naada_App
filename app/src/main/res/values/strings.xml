@@ -20,4 +20,7 @@
     <string name="facebook_app_id">2957008511061182</string>
     <string name="fb_login_protocol_scheme">fb2957008511061182</string>
     <string name="residents">Residents</string>
+    <string name="tastemaqers">TASTEMAQERS</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="music">Music</string>
 </resources>

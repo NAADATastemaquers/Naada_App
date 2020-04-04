@@ -6,24 +6,22 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
-import com.example.naada.util.NightMode;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -36,22 +34,29 @@ public class MainActivity extends AppCompatActivity {
     ImageView playButton;
     ImageView album_image;
 
-    SlidingDrawer slidingDrawer;
     private BottomNavigationView bottomNavigationView;
-    private Button Theme;
     private static final String KEY_IMAGE="image";
-    ImageView arrow;
-    //LottieAnimationView GoToPlayer;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference contentRef= db.collection("songs").document("song");
+    private FloatingActionButton mMainFab,mDarkFab,mMusicFab;
+    private TextView mDarkFabText,mMusicFabText;
+    private Boolean isOpen;
+    private Animation mFabOpen,mFabClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        arrow=findViewById(R.id.arrow);
         playButton=findViewById(R.id.play_button);
         album_image=findViewById(R.id.imageAlbum);
+
+        mMainFab=findViewById(R.id.main_fab);
+        mDarkFab=findViewById(R.id.dark_fab);
+        mMusicFab=findViewById(R.id.music_fab);
+        mDarkFabText=findViewById(R.id.dark_fab_text);
+        mMusicFabText=findViewById(R.id.music_fab_text);
+        mFabOpen=AnimationUtils.loadAnimation(MainActivity.this,R.anim.fab_open);
+        mFabClose=AnimationUtils.loadAnimation(MainActivity.this,R.anim.fab_close);
 
         NavBarSetup();
 
@@ -64,10 +69,6 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
-        email=findViewById(R.id.emailId);
-        name=findViewById(R.id.gname);
-        id=findViewById(R.id.gid);
 
         contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -90,37 +91,55 @@ public class MainActivity extends AppCompatActivity {
         });
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
 
-            email.setText(personEmail);
-            name.setText(personName);
-            id.setText(personId);
-        }
-
-//        GoToPlayer=findViewById(R.id.play);
-//        GoToPlayer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent music=new Intent(MainActivity.this,MusicPlayerActivity.class);
-//                startActivity(music);
-//                finish();
-//            }
-//        });
-
-
-
-
+        mDarkFab.setVisibility(View.INVISIBLE);
+        mMusicFab.setVisibility(View.INVISIBLE);
+        mDarkFabText.setVisibility(View.INVISIBLE);
+        mMusicFabText.setVisibility(View.INVISIBLE);
+        isOpen=false;
+        mMainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isOpen){
+                    mDarkFab.setAnimation(mFabClose);
+                    mMusicFab.setAnimation(mFabClose);
+                    mDarkFabText.setVisibility(View.INVISIBLE);
+                    mMusicFabText.setVisibility(View.INVISIBLE);
+                    isOpen=false;
+                }else{
+                    mDarkFab.setAnimation(mFabOpen);
+                    mMusicFab.setAnimation(mFabOpen);
+                    mDarkFabText.setVisibility(View.VISIBLE);
+                    mMusicFabText.setVisibility(View.VISIBLE);
+                    isOpen=true;
+                }
+            }
+        });
 
         //Darkmode
-        Theme=findViewById(R.id.theme);
-        Theme.setOnClickListener(new View.OnClickListener() {
+        mDarkFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent dk=new Intent(MainActivity.this, NightMode.class);
                 startActivity(dk);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
+
+       mMusicFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent music_activity=new Intent(MainActivity.this,MusicPlayerActivity.class);
+                startActivity(music_activity);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
             }
         });
 

@@ -2,6 +2,9 @@ package com.example.naada.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +27,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.naada.util.BottomNavHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ResidentsActivity extends AppCompatActivity {
     ArrayList<resident> residents=new ArrayList<>();
     private resident_adapter recylerview;
     private RecyclerView cars_recyclerview;
     TextView checkbio;
+    private FloatingActionButton mMainFab,mDarkFab,mMusicFab;
+    private TextView mDarkFabText,mMusicFabText;
+    private Boolean isOpen;
+    private Animation mFabOpen,mFabClose;
 
 
     @Override
@@ -38,10 +46,69 @@ public class ResidentsActivity extends AppCompatActivity {
         setContentView( R.layout.activity_residents);
         NavBarSetup();
 
+        mMainFab=findViewById(R.id.main_fab);
+        mDarkFab=findViewById(R.id.dark_fab);
+        mMusicFab=findViewById(R.id.music_fab);
+        mDarkFabText=findViewById(R.id.dark_fab_text);
+        mMusicFabText=findViewById(R.id.music_fab_text);
+        mFabOpen= AnimationUtils.loadAnimation(ResidentsActivity.this,R.anim.fab_open);
+        mFabClose=AnimationUtils.loadAnimation(ResidentsActivity.this,R.anim.fab_close);
+
         cars_recyclerview=(RecyclerView)findViewById( R.id.recylerview);
         cars_recyclerview.setLayoutManager(new GridLayoutManager(this,2));
 
         getCarsResponse();
+
+        mDarkFab.setVisibility(View.INVISIBLE);
+        mMusicFab.setVisibility(View.INVISIBLE);
+        mDarkFabText.setVisibility(View.INVISIBLE);
+        mMusicFabText.setVisibility(View.INVISIBLE);
+        isOpen=false;
+        mMainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isOpen){
+                    mDarkFab.setAnimation(mFabClose);
+                    mMusicFab.setAnimation(mFabClose);
+                    mDarkFabText.setVisibility(View.INVISIBLE);
+                    mMusicFabText.setVisibility(View.INVISIBLE);
+                    isOpen=false;
+                }else{
+                    mDarkFab.setAnimation(mFabOpen);
+                    mMusicFab.setAnimation(mFabOpen);
+                    mDarkFabText.setVisibility(View.VISIBLE);
+                    mMusicFabText.setVisibility(View.VISIBLE);
+                    isOpen=true;
+                }
+            }
+        });
+
+        //Darkmode
+        mDarkFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dk=new Intent(ResidentsActivity.this, NightMode.class);
+                startActivity(dk);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
+
+        mMusicFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent music_activity=new Intent(ResidentsActivity.this,MusicPlayerActivity.class);
+                startActivity(music_activity);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
 
     }
 

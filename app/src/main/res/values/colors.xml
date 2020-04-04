@@ -24,4 +24,5 @@
     <color name="chat_heading">#666884</color>
     <color name="chat_suBHeading">#797A8C</color>
     <color name="nav_bar">#000000</color>
+    <color name="light_grey">#D8D7D7</color>
 </resources>

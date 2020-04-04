@@ -53,7 +53,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     TextView artist,details,song;
     NotificationManager notificationManager;
     GoogleSignInClient mGoogleSignInClient;
-    private ImageView BackBtn;
 
     private static final String KEY_ALBUM="album";
     private static final String KEY_ARTIST= "artist";
@@ -78,7 +77,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
         album_image = findViewById(R.id.imageAlbum);
-        BackBtn=findViewById(R.id.backBttn);
 
         contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -115,15 +113,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                 }else{
                     Toast.makeText(MusicPlayerActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        BackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back=new Intent(MusicPlayerActivity.this,MainActivity.class);
-                startActivity(back);
-                finish();
             }
         });
 
@@ -206,7 +195,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
-                    Toast.makeText(MusicPlayerActivity.this,"Media Buffering Complete..",Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (IOException e) {

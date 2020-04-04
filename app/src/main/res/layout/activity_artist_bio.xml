@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.artist_bio">
 
-    <ImageButton
-        android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="33dp"
-        android:background="@drawable/ic_arrow" />
-
     <TextView
         android:id="@+id/bio"
         android:layout_width="wrap_content"
@@ -25,7 +16,7 @@
         android:lineSpacingExtra="7sp"
         android:text="BIO"
         android:textColor="#eb2429"
-        android:textSize="16sp"
+        android:textSize="26sp"
         app:fontFamily="@font/poppins_semibold" />
 
     <LinearLayout

@@ -20,7 +20,8 @@
         <activity android:name=".view.MusicPlayerActivity"
             android:parentActivityName=".view.MainActivity"/>
         <activity android:name=".view.LoginActivity" />
-        <activity android:name=".util.NightMode"/>
+        <activity android:name=".view.NightMode"
+            android:parentActivityName=".view.MainActivity"/>
         <activity android:name=".view.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
