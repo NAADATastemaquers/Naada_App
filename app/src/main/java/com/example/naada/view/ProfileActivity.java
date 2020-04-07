@@ -4,14 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.util.BottomNavHelper;
 import com.facebook.login.widget.LoginButton;
@@ -32,12 +35,18 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mDarkFabText,mMusicFabText;
     private Boolean isOpen;
     private Animation mFabOpen,mFabClose;
+    private ImageView profileImage;
+    private TextView profileName,profileMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         NavBarSetup();
+
+        profileImage=findViewById(R.id.profile_image);
+        profileName=findViewById(R.id.profile_name);
+        profileMail=findViewById(R.id.profile_mail);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -47,6 +56,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if(acct!=null){
+            String name=acct.getDisplayName();
+            String email=acct.getEmail();
+            Uri imageUrl=acct.getPhotoUrl();
+            profileMail.setText(email);
+            profileName.setText(name);
+            Glide.with(ProfileActivity.this).load(imageUrl).centerCrop().load(imageUrl).into(profileImage);
+        }
 
         mMainFab=findViewById(R.id.main_fab);
         mDarkFab=findViewById(R.id.dark_fab);

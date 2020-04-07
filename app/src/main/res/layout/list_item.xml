@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:elevation="5dp"
-    app:cardUseCompatPadding="true"
-    >
+    android:padding="6dp"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="6dp">
 
 
         <LinearLayout
-            android:orientation="vertical"
-
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/art_image"
-                android:layout_width="177dp"
-                android:layout_height="155dp"
-                android:scaleType="centerCrop"
 
-                />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/art_image_card"
+                android:layout_width="177dp"
+                android:layout_height="177dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/art_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/artist_name"
@@ -31,25 +38,28 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="10sp"
                 android:text="Vishwajith"
+                android:layout_gravity="center"
                 android:textColor="#666884"
+                android:layout_marginTop="5dp"
                 android:textSize="17sp"
-                app:fontFamily="@font/poppins_semibold"
-                />
+                app:fontFamily="@font/poppins_semibold" />
 
             <TextView
                 android:id="@+id/art_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:text="lorem lorem"
-                app:fontFamily="@font/poppins_light"
                 android:lineSpacingExtra="10sp"
+                android:text="lorem lorem"
+                android:layout_gravity="center"
                 android:textColor="#666884"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                app:fontFamily="@font/poppins_light" />
 
             <TextView
                 android:id="@+id/checkbio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:lineSpacingExtra="10sp"
                 android:text=" Check Bio"
                 android:textColor="#eb2429"
