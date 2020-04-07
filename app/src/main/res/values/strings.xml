@@ -31,4 +31,6 @@
     <string name="tastemaqers">TASTEMAQERS</string>
     <string name="upcoming_shows">Upcoming Shows</string>
     <string name="rate">Rate</string>
+    <string name="disable">Disable Dark Mode</string>
+    <string name="enable">Enable Dark Mode</string>
 </resources>

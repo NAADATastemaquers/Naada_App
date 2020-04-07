@@ -1,12 +1,17 @@
 package com.example.naada.view;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.naada.R;
@@ -31,6 +36,20 @@ public class  LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if(!isConnected())
+        {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_warning)
+                    .setTitle("Internet connection Alert!")
+                    .setMessage("Please check your internet connection")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    }).show();
+        }
 
         //GoogleSign in
 
@@ -68,10 +87,8 @@ public class  LoginActivity extends AppCompatActivity {
         googleSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.googleSigninBtn:
-                        signIn();
-                        break;
+                if (v.getId() == R.id.googleSigninBtn) {
+                    signIn();
                 }
             }
         });
@@ -87,6 +104,12 @@ public class  LoginActivity extends AppCompatActivity {
         });
     }
 
+    private boolean isConnected(){
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+        return networkInfo!=null && networkInfo.isConnected();
+    }
 
     @Override
     protected void onStart() {

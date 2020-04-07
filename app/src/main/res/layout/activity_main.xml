@@ -17,7 +17,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewAlbum"
-        android:layout_width="385dp"
+        android:layout_width="345dp"
         android:layout_height="385dp"
         android:outlineAmbientShadowColor="@color/light_grey"
         app:cardCornerRadius="20dp"
@@ -40,7 +40,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/drawer_layout"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"
+            tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>
 
@@ -59,7 +60,7 @@
         app:layout_constraintTop_toTopOf="@+id/cardViewAlbum"
         app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/play_button"
-        tools:ignore="VectorDrawableCompat"
+        tools:ignore="UnusedAttribute,VectorDrawableCompat"
         android:contentDescription="@string/todo" />
 
     <TextView
@@ -157,7 +158,8 @@
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="@+id/dark_fab"
         app:layout_constraintEnd_toStartOf="@+id/dark_fab"
-        app:layout_constraintTop_toTopOf="@+id/dark_fab" />
+        app:layout_constraintTop_toTopOf="@+id/dark_fab"
+        tools:ignore="UnusedAttribute" />
 
     <TextView
         android:id="@+id/music_fab_text"
@@ -175,6 +177,7 @@
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="@+id/music_fab"
         app:layout_constraintEnd_toStartOf="@+id/music_fab"
-        app:layout_constraintTop_toTopOf="@+id/music_fab" />
+        app:layout_constraintTop_toTopOf="@+id/music_fab"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

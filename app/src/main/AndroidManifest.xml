@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.naada">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:icon="@mipmap/icon_naada_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
         <activity android:name=".view.MessageActivity"
             android:parentActivityName=".view.MusicPlayerActivity"/>
         <service
@@ -20,8 +24,7 @@
         <activity android:name=".view.MusicPlayerActivity"
             android:parentActivityName=".view.MainActivity"/>
         <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.NightMode"
-            android:parentActivityName=".view.MainActivity"/>
+        <activity android:name=".view.NightMode"/>
         <activity android:name=".view.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
