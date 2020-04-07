@@ -30,6 +30,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/text_msg_bg"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
         android:hint="Type Something"
         android:imeActionId="4"
         android:imeOptions="actionSend"

@@ -1,65 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp">
 
-    <RelativeLayout
-        android:layout_width="300dp"
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:padding="6dp">
+        android:layout_marginRight="8dp"
+        android:background="@drawable/background_right"
+        android:fontFamily="@font/poppins"
+        android:maxWidth="240dp"
+        android:padding="10dp"
+        android:text="hello, hello!"
+        android:textColor="#ffffff"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/ic_launcher"
-            android:visibility="gone" />
+    <TextView
+        android:id="@+id/timeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:fontFamily="@font/poppins"
+        android:text="11:40"
+        android:textColor="@color/mainText"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textMessage"
+        app:layout_constraintRight_toLeftOf="@+id/textMessage" />
 
-
-        <TextView
-            android:id="@+id/textMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/profile_image"
-            android:background="@drawable/background_right"
-            android:fontFamily="@font/poppins"
-            android:padding="15dp"
-            android:paddingStart="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="10dp"
-            android:text="hello"
-            android:textColor="@color/chatTextColor_right"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/timeStamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textMessage"
-            android:layout_alignLeft="@+id/textMessage"
-            android:layout_alignBottom="@+id/textMessage"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginBottom="0dp"
-            android:elevation="100dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="00:00"
-            android:textColor="@color/chatTextColor_right"
-            android:textSize="8sp" />
-
-
-    </RelativeLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

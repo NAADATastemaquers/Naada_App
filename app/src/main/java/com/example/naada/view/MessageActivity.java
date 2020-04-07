@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +33,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -49,6 +53,7 @@ public class MessageActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
     List<ResponseMessage> responseMessageList;
     String message="";
+    String time="";
     String id="";
     GoogleSignInClient mGoogleSignInClient;
     String name;
@@ -142,14 +147,16 @@ public class MessageActivity extends AppCompatActivity {
 
                     message=post.getMessage();
                     id=post.getsender();
+                    time=post.getTimestamp();
+                    time=time.substring(11,16);
 
                     if (id.equals(name)) {
-                        ResponseMessage responseMessage = new ResponseMessage(message, true,name);
+                        ResponseMessage responseMessage = new ResponseMessage(message, true,name,time);
                         responseMessageList.add(responseMessage);
                         messageAdapter.notifyDataSetChanged();
                         recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
                     }else{
-                        ResponseMessage responseMessage2 = new ResponseMessage(message, false,id);
+                        ResponseMessage responseMessage2 = new ResponseMessage(message, false,id,time);
                         responseMessageList.add(responseMessage2);
                         messageAdapter.notifyDataSetChanged();
                         recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
@@ -176,10 +183,13 @@ public class MessageActivity extends AppCompatActivity {
     private void createPost(){
         message=userInput.getText().toString();
         id=name;
+        Calendar calendar=Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format=new SimpleDateFormat("HH:mm");
+        String time=format.format(calendar.getTime());
         if(message.isEmpty()){
             Toast.makeText(this, "Can't send empty message", Toast.LENGTH_SHORT).show();
         }else{
-            Post post=new Post(message,id);
+            Post post=new Post(message,id,time);
             Call<Post> call=jsonPlaceHolderApi.createPost(post);
             call.enqueue(new Callback<Post>() {
                 @Override
