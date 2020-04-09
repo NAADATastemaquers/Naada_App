@@ -1,6 +1,7 @@
 package com.example.naada.data.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,11 +39,22 @@ public class FavSongsAdapter extends RecyclerView.Adapter<FavSongsAdapter.FavSon
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavSongsViewholder holder, int position) {
+    public void onBindViewHolder(@NonNull FavSongsViewholder holder, final int position) {
 
         Picasso.get().load( details.get(position).getSong_img() ).into( holder.favSong_img );
-//        Glide.with(context).load("http://goo.gl/gEgYUd").into(imageView);
         holder.favSong_name.setText(details.get(position).song_name);
+        holder.favSong_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent=new Intent(Intent.ACTION_SEND);
+                myintent.setType("text/plain");
+                String sharesub="Hey I'm listening to " + details.get(position).song_name +  "\n\n" + "Find it here "+ details.get(position).song_url  ;
+                myintent.putExtra(Intent.EXTRA_TEXT,sharesub);
+                myintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(Intent.createChooser(myintent,"share using"));
+            }
+        });
+
     }
 
     @Override
@@ -50,15 +62,16 @@ public class FavSongsAdapter extends RecyclerView.Adapter<FavSongsAdapter.FavSon
         return details.size();
     }
 
-    public class FavSongsViewholder extends RecyclerView.ViewHolder {
+    static class FavSongsViewholder extends RecyclerView.ViewHolder {
 
-        ImageView favSong_img;
+        ImageView favSong_img,favSong_share;
         TextView favSong_name;
 
-        public FavSongsViewholder(@NonNull View itemView) {
+        FavSongsViewholder(@NonNull View itemView) {
             super(itemView);
             favSong_img = itemView.findViewById(R.id.favSong_img);
             favSong_name = itemView.findViewById(R.id.favSong_name);
+            favSong_share = itemView.findViewById(R.id.favSong_share);
 
         }
     }

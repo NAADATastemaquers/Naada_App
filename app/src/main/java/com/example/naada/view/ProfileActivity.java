@@ -116,7 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Log.d(TAG, "data: "+f.getEmail());
                 }
 
-                FavSongsAdapter adapter = new FavSongsAdapter(fav_details,getApplicationContext());
+                FavSongsAdapter adapter = new FavSongsAdapter(fav_details,ProfileActivity.this);
                 recyclerView.setAdapter(adapter);
 
             }
