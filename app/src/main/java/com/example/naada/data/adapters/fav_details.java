@@ -1,6 +1,10 @@
 package com.example.naada.data.adapters;
 
+import java.util.List;
+
 public class fav_details {
+
+
 
     public String getEmail() {
         return email;
