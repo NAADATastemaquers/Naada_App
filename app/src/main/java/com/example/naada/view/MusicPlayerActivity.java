@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.naada.R;
+import com.example.naada.data.adapters.fav_details;
 import com.example.naada.data.models.Track;
 import com.example.naada.data.models.playable;
 import com.example.naada.util.CreateNotification;
@@ -42,13 +44,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MusicPlayerActivity extends AppCompatActivity implements playable, Dialog.DialogListener {
     Intent svc;
     ImageButton play;
     ImageButton message;
     Track track;
-    ImageView album_image;
+    ImageView album_image,favorite_btn;
     ImageButton share;
     String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
     MediaPlayer mediaPlayer;
@@ -57,6 +67,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     NotificationManager notificationManager;
     GoogleSignInClient mGoogleSignInClient;
     private ImageView BackBtn;
+    private fav_details fav_details;
 
     private static final String KEY_ALBUM="album";
     private static final String KEY_ARTIST= "artist";
@@ -64,7 +75,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     private static final String KEY_IMAGE="image";
     private static final String KEY_NAME="name";
     private static final String KEY_URL="url";
-
+    private String UserEmail ;
     private static final String TAG = "MusicPlayerActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference contentRef= db.collection("songs").document("song");
@@ -82,6 +93,9 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         svc=new Intent(this,BackgroundSoundService.class);
         album_image = findViewById(R.id.image);
         BackBtn=findViewById(R.id.backBttn);
+        favorite_btn = findViewById(R.id.favoriteBtn);
+
+
 
         contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -141,7 +155,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-
+        UserEmail = acct.getEmail();
         if (isMyServiceRunning(BackgroundSoundService.class)) {
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
 
@@ -161,6 +175,21 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             registerReceiver(broadcastReceiver,new IntentFilter("TRACKS_TRACKS"));
             startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
         }
+
+//        Favorite Button features
+        favorite_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavAsyncTask asyncTask = new FavAsyncTask();
+                asyncTask.execute();
+            }
+        });
+
+
+
+
+
+
         play=findViewById(R.id.play);
         try{
             if(BackgroundSoundService.player.isPlaying())
@@ -218,6 +247,9 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             e.printStackTrace();
         }
 
+    }
+
+    private void sendFavorite() {
     }
 
     @Override
@@ -293,5 +325,50 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             notificationManager.cancelAll();
         }
         unregisterReceiver(broadcastReceiver);
+    }
+
+    public class FavAsyncTask extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    assert documentSnapshot != null;
+                    if(documentSnapshot.exists()){
+                        final String song_name =documentSnapshot.getString(KEY_NAME);
+                        final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+                        String album_name =documentSnapshot.getString(KEY_ALBUM);
+                        String album_image_url = documentSnapshot.getString(KEY_IMAGE);
+                        final String spotify_url = documentSnapshot.getString(KEY_URL);
+                       fav_details = new fav_details(UserEmail,song_name,spotify_url,album_image_url);
+
+                        Retrofit retrofit=new Retrofit.Builder()
+                                .baseUrl("https://fast-garden-54651.herokuapp.com/")
+                                .addConverterFactory( GsonConverterFactory.create())
+                                .build();
+
+                        Favorite favorite = retrofit.create( Favorite.class);
+                        Call<fav_details> call= favorite.sendFavSong(fav_details);
+                        call.enqueue(new Callback<com.example.naada.data.adapters.fav_details>() {
+                            @Override
+                            public void onResponse(Call<com.example.naada.data.adapters.fav_details> call, Response<com.example.naada.data.adapters.fav_details> response) {
+                            Toast.makeText(getApplicationContext(),"Added to Favorites",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<com.example.naada.data.adapters.fav_details> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(),"Could not add to Favoties",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+                    }else{
+                    }
+                }
+            });
+            return null;
+        }
     }
 }
