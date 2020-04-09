@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".view.ProfileActivity">
 
     <TextView
@@ -11,13 +12,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile Activity"
-        android:textSize="64sp"
+        android:textColor="@color/mainText"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <include layout="@layout/bottom_navbar"></include>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/bottom_navbar"></include>
+
+    <Button
+        android:id="@+id/signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button_google"
+        android:text="Sign Out"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favSong_list"
+        android:layout_width="match_parent"
+        android:layout_height="499dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!--    Merge everything from here-->
+
+
+    <!--    Till here into new branch-->
 </androidx.constraintlayout.widget.ConstraintLayout>
