@@ -40,13 +40,14 @@ public class FavSongsAdapter extends RecyclerView.Adapter<FavSongsAdapter.FavSon
     @Override
     public void onBindViewHolder(@NonNull FavSongsViewholder holder, int position) {
 
-        Picasso.get().load( details.get(position).song_img ).into( holder.favSong_img );
+        Picasso.get().load( details.get(position).getSong_img() ).into( holder.favSong_img );
+//        Glide.with(context).load("http://goo.gl/gEgYUd").into(imageView);
         holder.favSong_name.setText(details.get(position).song_name);
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return details.size();
     }
 
     public class FavSongsViewholder extends RecyclerView.ViewHolder {
