@@ -20,12 +20,12 @@ class NightMode : AppCompatActivity() {
         val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
         val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
         if(isNightModeOn){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             try {
                 switch_btn.text = "Disable Dark Mode"
             }catch (e:Exception){}
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             try {
                 switch_btn.text = "Enable Dark Mode"
             }catch (e:Exception){
@@ -35,17 +35,19 @@ class NightMode : AppCompatActivity() {
         try {
             switch_btn.setOnClickListener {
                 if (isNightModeOn) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     sharedPrefsEdit.putBoolean("NightMode", false)
                     sharedPrefsEdit.apply()
+                    recreate();
                     try {
                         switch_btn.text = "Enable Dark Mode"
                     } catch (e: Exception) {
                     }
                 } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     sharedPrefsEdit.putBoolean("NightMode", true)
                     sharedPrefsEdit.apply()
+                    recreate();
                     try {
                         switch_btn.text = "Disable Dark Mode"
                     } catch (e: Exception) {

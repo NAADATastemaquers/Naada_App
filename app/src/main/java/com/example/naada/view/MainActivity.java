@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mDarkFabText,mMusicFabText;
     private Boolean isOpen;
     private Animation mFabOpen,mFabClose;
+    private Switch toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
