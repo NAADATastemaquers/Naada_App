@@ -89,6 +89,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
         album_image = findViewById(R.id.imageAlbum);
+        favorite_btn = findViewById(R.id.favoriteBtn);
 
 
 
@@ -130,14 +131,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             }
         });
 
-        BackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back=new Intent(MusicPlayerActivity.this,MainActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
+
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.

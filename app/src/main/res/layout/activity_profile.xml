@@ -17,17 +17,16 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/main_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/icon_add"
             app:backgroundTint="@color/button_text"
             app:fabSize="auto"
-            app:rippleColor="@color/Red" />
+            app:rippleColor="@color/Red"
+            app:srcCompat="@drawable/icon_add" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -39,14 +38,14 @@
         android:layout_marginRight="22dp"
         android:layout_marginBottom="10dp"
         android:clickable="true"
+        android:focusable="true"
         app:backgroundTint="@color/button_text"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/container_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="@color/Red"
         app:srcCompat="@drawable/ic_music_note"
-        tools:ignore="VectorDrawableCompat"
-        android:focusable="true" />
+        tools:ignore="VectorDrawableCompat" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/dark_fab"
@@ -56,13 +55,13 @@
         android:layout_marginRight="22dp"
         android:layout_marginBottom="14dp"
         android:clickable="true"
+        android:focusable="true"
         app:backgroundTint="@color/button_text"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/music_fab"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="@color/Red"
         app:srcCompat="@drawable/ic_wb_sunny"
-        android:focusable="true"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
@@ -98,92 +97,108 @@
         app:layout_constraintBottom_toBottomOf="@+id/music_fab"
         app:layout_constraintEnd_toStartOf="@+id/music_fab"
         app:layout_constraintTop_toTopOf="@+id/music_fab" />
+
     <include
         android:id="@+id/include2"
-        layout="@layout/bottom_navbar"></include>
+        layout="@layout/bottom_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></include>
 
     <Button
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginRight="176dp"
         android:background="@drawable/custom_button_google"
         android:padding="5dp"
         android:text="Sign Out"
         android:textColor="#fff"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_mail" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_mail" /><![CDATA[
 
-    <TextView
-        android:id="@+id/profileText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="PROFILE"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cordinate"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
-        app:cardCornerRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileText" >
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_default_avatar" />
-    </androidx.cardview.widget.CardView>
+
+
+
+    app:layout_constraintTop_toTopOf="@+id/include2" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:fontFamily="@font/poppins"
         android:text="TextView"
         android:textColor="@color/mainText"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOut"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cordinate" />
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.296" />
 
     <TextView
         android:id="@+id/profile_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:fontFamily="@font/poppins"
         android:text="TextView"
+        android:textAllCaps="false"
         android:textColor="@color/mainText"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toTopOf="@+id/signOut"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
-        app:layout_constraintTop_toTopOf="@+id/include2" />
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favSong_list"
         android:layout_width="match_parent"
-        android:layout_height="499dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/music_fab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/signOut"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_default_avatar" />
 
 
     <!--    Merge everything from here-->

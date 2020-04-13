@@ -79,7 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if(acct!=null){
             String name=acct.getDisplayName();
             String email=acct.getEmail();
