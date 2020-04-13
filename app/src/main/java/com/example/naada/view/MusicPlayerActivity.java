@@ -1,5 +1,4 @@
 package com.example.naada.view;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,8 +34,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -91,9 +88,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         share=(ImageButton) findViewById(R.id.share);
         message=(ImageButton)findViewById(R.id.message);
         svc=new Intent(this,BackgroundSoundService.class);
-        album_image = findViewById(R.id.image);
-        BackBtn=findViewById(R.id.backBttn);
-        favorite_btn = findViewById(R.id.favoriteBtn);
+        album_image = findViewById(R.id.imageAlbum);
 
 
 
@@ -143,7 +138,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                 finish();
             }
         });
-
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -220,7 +214,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                     if(acct!=null){
                         Intent newIntent=new Intent(MusicPlayerActivity.this,MessageActivity.class);
                         startActivity(newIntent);
-                        finish();
                     }else{
                         Dialog dialog=new Dialog();
                         dialog.show(getSupportFragmentManager(),"login dialog");
@@ -240,7 +233,6 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
-                    Toast.makeText(MusicPlayerActivity.this,"Media Buffering Complete..",Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (IOException e) {

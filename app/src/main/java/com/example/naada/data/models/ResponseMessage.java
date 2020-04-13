@@ -5,11 +5,15 @@ public class ResponseMessage {
     String text;
     String name;
     boolean isMe;
+    String timestamp;
 
-    public ResponseMessage(String text, boolean isMe, String name) {
+
+
+    public ResponseMessage(String text, boolean isMe, String name, String timestamp) {
         this.text = text;
         this.isMe = isMe;
         this.name = name;
+        this.timestamp = timestamp;
     }
 
     public String getName() {
@@ -34,5 +38,13 @@ public class ResponseMessage {
 
     public void setMe(boolean me) {
         isMe = me;
+    }
+
+    public void setTime(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
     }
 }

@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_above="@+id/userInput"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="10dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/userInput"
@@ -30,6 +30,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/text_msg_bg"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
         android:hint="Type Something"
         android:imeActionId="4"
         android:imeOptions="actionSend"
@@ -51,43 +52,30 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="18dp"
         android:background="@drawable/send_img_btn"
         android:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conversation" />
-
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/conversation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235"
-        app:srcCompat="@drawable/ic_chat_back_black_24dp"
-        tools:ignore="VectorDrawableCompat" />
+        app:layout_constraintTop_toBottomOf="@+id/conversation"
+        app:layout_constraintVertical_bias="0.411" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="The Neutral Dreams"
         android:textColor="@color/chat_heading"
-        android:textSize="18sp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.385"
-        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/artist_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
@@ -95,9 +83,8 @@
         android:textColor="@color/chat_suBHeading"
         app:layout_constraintBottom_toTopOf="@+id/conversation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/song_name"
         app:layout_constraintVertical_bias="0.409" />
 
 

@@ -30,7 +30,6 @@ class NightMode : AppCompatActivity() {
             }catch (e:Exception){
 
             }
-
         }
         try {
             switch_btn.setOnClickListener(View.OnClickListener {

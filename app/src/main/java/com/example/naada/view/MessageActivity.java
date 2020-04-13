@@ -1,17 +1,23 @@
 package com.example.naada.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.data.adapters.JsonPlaceHolderApi;
 import com.example.naada.data.adapters.MessageAdapter;
@@ -21,8 +27,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,10 +53,18 @@ public class MessageActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
     List<ResponseMessage> responseMessageList;
     String message="";
+    String time="";
     String id="";
-    private ImageView backBtn;
     GoogleSignInClient mGoogleSignInClient;
     String name;
+    TextView song,artist;
+
+    private static final String KEY_ARTIST= "artist";
+    private static final String KEY_NAME="name";
+    private static final String TAG = "MessageActivity";
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference contentRef= db.collection("songs").document("song");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +73,25 @@ public class MessageActivity extends AppCompatActivity {
 
         userInput = findViewById(R.id.userInput);
         recyclerView = findViewById(R.id.conversation);
+        artist=findViewById(R.id.artist_name);
+        song=findViewById(R.id.song_name);
         responseMessageList = new ArrayList<>();
-        backBtn=findViewById(R.id.backBtn);
+
+        contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(documentSnapshot.exists()){
+                    final String song_name =documentSnapshot.getString(KEY_NAME);
+                    final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+                    Log.d(TAG, "song name: "+song_name);
+                    Log.d(TAG, "artist_name: "+artist_name);
+                    song.setText(song_name);
+                    artist.setText(artist_name);
+                }else{
+                    Toast.makeText(MessageActivity.this,"​Document doesn't exists​",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -67,15 +105,6 @@ public class MessageActivity extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         assert acct != null;
         name= acct.getDisplayName();
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back=new Intent(MessageActivity.this,MusicPlayerActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
 
         messageAdapter = new MessageAdapter(responseMessageList, this);
         try{
@@ -118,14 +147,16 @@ public class MessageActivity extends AppCompatActivity {
 
                     message=post.getMessage();
                     id=post.getsender();
+                    time=post.getTimestamp();
+                    time=time.substring(11,16);
 
                     if (id.equals(name)) {
-                        ResponseMessage responseMessage = new ResponseMessage(message, true,name);
+                        ResponseMessage responseMessage = new ResponseMessage(message, true,name,time);
                         responseMessageList.add(responseMessage);
                         messageAdapter.notifyDataSetChanged();
                         recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
                     }else{
-                        ResponseMessage responseMessage2 = new ResponseMessage(message, false,id);
+                        ResponseMessage responseMessage2 = new ResponseMessage(message, false,id,time);
                         responseMessageList.add(responseMessage2);
                         messageAdapter.notifyDataSetChanged();
                         recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
@@ -152,10 +183,13 @@ public class MessageActivity extends AppCompatActivity {
     private void createPost(){
         message=userInput.getText().toString();
         id=name;
+        Calendar calendar=Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format=new SimpleDateFormat("HH:mm");
+        String time=format.format(calendar.getTime());
         if(message.isEmpty()){
             Toast.makeText(this, "Can't send empty message", Toast.LENGTH_SHORT).show();
         }else{
-            Post post=new Post(message,id);
+            Post post=new Post(message,id,time);
             Call<Post> call=jsonPlaceHolderApi.createPost(post);
             call.enqueue(new Callback<Post>() {
                 @Override

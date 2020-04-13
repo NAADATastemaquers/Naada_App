@@ -20,4 +20,17 @@
     <string name="facebook_app_id">2957008511061182</string>
     <string name="fb_login_protocol_scheme">fb2957008511061182</string>
     <string name="residents">Residents</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="music">Music</string>
+    <string name="ocean_trix">Ocean Trix</string>
+    <string name="the_neutral_dreams">The Neutral Dreams</string>
+    <string name="rating">Rating</string>
+    <string name="_4_8">4.8</string>
+    <string name="listening_now">Listening now</string>
+    <string name="_372k">372k</string>
+    <string name="tastemaqers">TASTEMAQERS</string>
+    <string name="upcoming_shows">Upcoming Shows</string>
+    <string name="rate">Rate</string>
+    <string name="disable">Disable Dark Mode</string>
+    <string name="enable">Enable Dark Mode</string>
 </resources>

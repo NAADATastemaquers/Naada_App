@@ -11,7 +11,7 @@
     <color name="mainBackground">#454A59</color>
     <color name="music_1strow">#CACACA</color>
     <color name="music_2ndrow">#fff</color>
-
+    <color name="title_main">#fff</color>
     <!--chat feature-->
     <color name="chatBackground">#000000</color>
     <color name="chatTextColor_right">#effffe</color>

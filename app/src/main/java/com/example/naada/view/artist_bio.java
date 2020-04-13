@@ -29,7 +29,6 @@ public class artist_bio extends AppCompatActivity {
     TextView name,desc,rate;
     RequestInteface request;
     ArrayList<artist_shows> show=new ArrayList<>();
-    ImageButton back;
     art_bio bio;
     private shows_adapter adapter;
     private RecyclerView recyclerView;
@@ -44,14 +43,6 @@ public class artist_bio extends AppCompatActivity {
         name=(TextView) findViewById( R.id.art_name );
         rate=(TextView) findViewById( R.id.rate );
         desc=(TextView) findViewById( R.id.abt );
-        back=(ImageButton)findViewById( R.id.back ) ;
-        back.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent( artist_bio.this,ResidentsActivity.class );
-                startActivity( i );
-            }
-        } );
         recyclerView=(RecyclerView)findViewById(R.id.recyle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Intent intent=getIntent();
