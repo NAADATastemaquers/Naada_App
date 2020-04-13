@@ -13,6 +13,7 @@
     <color name="White">#ffffff</color>
     <color name="music_1strow">#9babcb</color>
     <color name="music_2ndrow">#666884</color>
+    <color name="title_main">#D63447</color>
 
         <!--chat feature-->
     <color name="chatBackground">#ffffff</color>
@@ -23,4 +24,5 @@
     <color name="chat_heading">#666884</color>
     <color name="chat_suBHeading">#797A8C</color>
     <color name="nav_bar">#000000</color>
+    <color name="light_grey">#D8D7D7</color>
 </resources>
