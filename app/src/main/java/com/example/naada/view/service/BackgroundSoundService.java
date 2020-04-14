@@ -6,13 +6,26 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import java.io.IOException;
+import java.net.URI;
 
 public class BackgroundSoundService extends Service {
-    private String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference contentRef= db.collection("Stream").document("Stream_URL");
+    public String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
+    private static final String SONG_URL="URL";
 
 
-        private static final String TAG = null;
+        private static final String TAG = "Music_stream_link";
         public static MediaPlayer player;
 
         public IBinder onBind(Intent arg0) {
@@ -23,6 +36,17 @@ public class BackgroundSoundService extends Service {
         @Override
         public void onCreate() {
             super.onCreate();
+            try{
+                contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        final String URL;
+                        URL=documentSnapshot.getString(SONG_URL);
+                        Log.d(TAG,URL);
+                        url=URL;
+                    }
+                });
+            }catch (Exception ignored){}
             Log.d("service", "onCreate");
             player = new MediaPlayer();
             try {
@@ -35,7 +59,7 @@ public class BackgroundSoundService extends Service {
 
         }
 
-        public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
             Log.d("service", "onStartCommand");
             try {
                 player.prepare();

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProfileActivity"
-    android:background="@color/mainBackground">
+    android:background="@color/mainBackground"
+    tools:context=".view.ProfileActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container_layout"
@@ -107,7 +107,7 @@
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/custom_button_google"
         android:padding="5dp"
         android:text="Sign Out"
@@ -122,7 +122,7 @@
         android:id="@+id/profileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="PROFILE"
         android:textColor="@color/colorPrimaryDark"
@@ -135,26 +135,23 @@
         android:id="@+id/cordinate"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileText" >
+        app:layout_constraintTop_toBottomOf="@+id/profileText">
 
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_default_avatar" />
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
         android:text="TextView"
         android:textColor="@color/mainText"
@@ -174,4 +171,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favSong_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signOut" />
+
+
+    <!--    Merge everything from here-->
+
+
+    <!--    Till here into new branch-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="5dp"
+       android:elevation="150dp">
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardFav"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:layout_marginLeft="20dp"
+           app:cardCornerRadius="20dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginBottom="4dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <ImageView
+               android:id="@+id/favSong_img"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@color/colorAccent"
+               android:scaleType="centerCrop"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.065"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.027" />
+
+       </androidx.cardview.widget.CardView>
+
+
+       <TextView
+           android:id="@+id/favSong_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Shunkan Sentimental"
+           android:textColor="@color/mainText"
+           android:textSize="18sp"
+           android:textStyle="bold"
+           android:layout_marginLeft="100dp"
+           android:layout_marginTop="20dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.34"
+           app:layout_constraintStart_toEndOf="@+id/cardFav"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.451" />
+
+       <ImageView
+           android:id="@+id/favSong_share"
+           android:layout_width="20dp"
+           android:layout_height="20dp"
+           android:layout_marginLeft="320dp"
+           android:layout_marginTop="20dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.833"
+           app:layout_constraintStart_toEndOf="@+id/favSong_name"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.446"
+           app:srcCompat="@drawable/ic_share_black_24dp" />
+   </androidx.cardview.widget.CardView>
+</LinearLayout>
+

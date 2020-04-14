@@ -146,8 +146,6 @@ public class ResidentsActivity extends AppCompatActivity {
 
             }
 
-
-
             @Override
             public void onFailure(Call<List<resident>> call, Throwable t) {
                 Toast.makeText( ResidentsActivity.this,"Failed", Toast.LENGTH_SHORT).show();
