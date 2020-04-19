@@ -123,15 +123,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isOpen){
-                    mDarkFab.setAnimation(mFabClose);
+//                    mDarkFab.setAnimation(mFabClose);
                     mMusicFab.setAnimation(mFabClose);
-                    mDarkFabText.setVisibility(View.INVISIBLE);
+//                    mDarkFabText.setVisibility(View.INVISIBLE);
                     mMusicFabText.setVisibility(View.INVISIBLE);
                     isOpen=false;
                 }else{
-                    mDarkFab.setAnimation(mFabOpen);
+//                    mDarkFab.setAnimation(mFabOpen);
                     mMusicFab.setAnimation(mFabOpen);
-                    mDarkFabText.setVisibility(View.VISIBLE);
+//                    mDarkFabText.setVisibility(View.VISIBLE);
                     mMusicFabText.setVisibility(View.VISIBLE);
                     isOpen=true;
                 }
@@ -142,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
         mDarkFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dk=new Intent(MainActivity.this, NightMode.class);
-                startActivity(dk);
-                mDarkFab.setAnimation(mFabClose);
+//                Intent dk=new Intent(MainActivity.this, NightMode.class);
+//                startActivity(dk);
+//                mDarkFab.setAnimation(mFabClose);
                 mMusicFab.setAnimation(mFabClose);
-                mDarkFabText.setVisibility(View.INVISIBLE);
+//                mDarkFabText.setVisibility(View.INVISIBLE);
                 mMusicFabText.setVisibility(View.INVISIBLE);
                 isOpen=false;
             }
@@ -157,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent music_activity=new Intent(MainActivity.this,MusicPlayerActivity.class);
                 startActivity(music_activity);
-                mDarkFab.setAnimation(mFabClose);
+//                mDarkFab.setAnimation(mFabClose);
                 mMusicFab.setAnimation(mFabClose);
-                mDarkFabText.setVisibility(View.INVISIBLE);
+//                mDarkFabText.setVisibility(View.INVISIBLE);
                 mMusicFabText.setVisibility(View.INVISIBLE);
                 isOpen=false;
             }

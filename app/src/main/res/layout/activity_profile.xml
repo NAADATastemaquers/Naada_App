@@ -60,6 +60,7 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/music_fab"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"
         app:rippleColor="@color/Red"
         app:srcCompat="@drawable/ic_wb_sunny"
         tools:ignore="VectorDrawableCompat" />
@@ -76,6 +77,7 @@
         android:paddingRight="16dp"
         android:paddingBottom="6dp"
         android:text="@string/dark_mode"
+        android:visibility="invisible"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="@+id/dark_fab"
         app:layout_constraintEnd_toStartOf="@+id/dark_fab"
@@ -114,8 +116,7 @@
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/custom_button_google"
         android:padding="5dp"
         android:text="Sign Out"
@@ -124,8 +125,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_mail" /><![CDATA[
 
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="PROFILE"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cordinate"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileText">
 
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
 
 
 
@@ -151,6 +178,7 @@
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
         android:text="TextView"
         android:textColor="@color/mainText"
@@ -186,19 +214,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toStartOf="@+id/signOut"
-        app:layout_constraintHorizontal_bias="0.592"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favSong_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_default_avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/signOut" />
 
 
     <!--    Merge everything from here-->
