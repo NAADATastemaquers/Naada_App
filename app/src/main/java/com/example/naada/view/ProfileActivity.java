@@ -7,12 +7,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.data.adapters.FavSongsAdapter;
 import com.example.naada.data.adapters.fav_details;
@@ -25,6 +31,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +50,12 @@ public class ProfileActivity extends AppCompatActivity {
     private RecyclerView recyclerView ;
     private FavSongsAdapter favSongsAdapter;
     private String userEmail;
+    private FloatingActionButton mMainFab,mDarkFab,mMusicFab;
+    private TextView mDarkFabText,mMusicFabText;
+    private Boolean isOpen;
+    private Animation mFabOpen,mFabClose;
+    private ImageView profileImage;
+    private TextView profileName,profileMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +63,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         NavBarSetup();
 
+        profileImage=findViewById(R.id.profile_image);
+        profileName=findViewById(R.id.profile_name);
+        profileMail=findViewById(R.id.profile_mail);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -63,6 +79,22 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        if(acct!=null){
+            String name=acct.getDisplayName();
+            String email=acct.getEmail();
+            Uri imageUrl=acct.getPhotoUrl();
+            profileMail.setText(email);
+            profileName.setText(name);
+            Glide.with(ProfileActivity.this).load(imageUrl).centerCrop().load(imageUrl).into(profileImage);
+        }
+
+        mMainFab=findViewById(R.id.main_fab);
+        mDarkFab=findViewById(R.id.dark_fab);
+        mMusicFab=findViewById(R.id.music_fab);
+        mDarkFabText=findViewById(R.id.dark_fab_text);
+        mMusicFabText=findViewById(R.id.music_fab_text);
+        mFabOpen= AnimationUtils.loadAnimation(ProfileActivity.this,R.anim.fab_open);
+        mFabClose=AnimationUtils.loadAnimation(ProfileActivity.this,R.anim.fab_close);
 
         gSignOut=findViewById(R.id.signOut);
         gSignOut.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +124,57 @@ public class ProfileActivity extends AppCompatActivity {
 //        Till here into new branch
 
 
+
+        mDarkFab.setVisibility(View.INVISIBLE);
+        mMusicFab.setVisibility(View.INVISIBLE);
+        mDarkFabText.setVisibility(View.INVISIBLE);
+        mMusicFabText.setVisibility(View.INVISIBLE);
+        isOpen=false;
+        mMainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isOpen){
+                    mDarkFab.setAnimation(mFabClose);
+                    mMusicFab.setAnimation(mFabClose);
+                    mDarkFabText.setVisibility(View.INVISIBLE);
+                    mMusicFabText.setVisibility(View.INVISIBLE);
+                    isOpen=false;
+                }else{
+                    mDarkFab.setAnimation(mFabOpen);
+                    mMusicFab.setAnimation(mFabOpen);
+                    mDarkFabText.setVisibility(View.VISIBLE);
+                    mMusicFabText.setVisibility(View.VISIBLE);
+                    isOpen=true;
+                }
+            }
+        });
+
+        //Darkmode
+        mDarkFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dk=new Intent(ProfileActivity.this, NightMode.class);
+                startActivity(dk);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
+
+        mMusicFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent music_activity=new Intent(ProfileActivity.this,MusicPlayerActivity.class);
+                startActivity(music_activity);
+                mDarkFab.setAnimation(mFabClose);
+                mMusicFab.setAnimation(mFabClose);
+                mDarkFabText.setVisibility(View.INVISIBLE);
+                mMusicFabText.setVisibility(View.INVISIBLE);
+                isOpen=false;
+            }
+        });
 
     }
     //        This too

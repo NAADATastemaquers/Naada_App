@@ -8,50 +8,81 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.media.session.MediaSessionCompat;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.naada.R;
 import com.example.naada.data.models.Track;
+import com.example.naada.view.MusicPlayerActivity;
 import com.example.naada.view.service.NotificationActionServices;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class CreateNotification {
 
     public static final String Channel_id="channel1";
     public  static final String action_play= "actionplay";
     public static Notification noticication;
+    private static final String KEY_NAME="name";
+    private static final String KEY_ARTIST= "artist";
+    private static FirebaseFirestore db = FirebaseFirestore.getInstance();;
+    private static DocumentReference contentRef=contentRef= db.collection("songs").document("song");;
+    private static String song,artist;
 
-    public static void createNotification(Context context, Track track, int playbutton, int pos)
+    private static final String TAG = "createNotification";
+
+    public static void createNotification(final Context context, Track track, final int playbutton, int pos)
     {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
         {
-            NotificationManagerCompat notificationManagerCompat =NotificationManagerCompat.from(context);
-            MediaSessionCompat mediaSessionCompat=new MediaSessionCompat(context,"tag");
+            final NotificationManagerCompat notificationManagerCompat =NotificationManagerCompat.from(context);
+            final MediaSessionCompat mediaSessionCompat=new MediaSessionCompat(context,"tag");
 
-            Bitmap icon= BitmapFactory.decodeResource(context.getResources(), track.getImage());
+            final Bitmap icon= BitmapFactory.decodeResource(context.getResources(), track.getImage());
 
             Intent intentplay=new Intent(context, NotificationActionServices.class).setAction(action_play);
 
-            PendingIntent pendingIntentPLay=PendingIntent.getBroadcast(context,0,intentplay,PendingIntent.FLAG_UPDATE_CURRENT);
+            final PendingIntent pendingIntentPLay=PendingIntent.getBroadcast(context,0,intentplay,PendingIntent.FLAG_UPDATE_CURRENT);
 
-            noticication=new NotificationCompat.Builder(context,Channel_id)
-                    .setSmallIcon( R.drawable.ic_music_note_black_24dp)
+            contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    if(documentSnapshot.exists()){
+                        final String song_name =documentSnapshot.getString(KEY_NAME);
+                        final String artist_name =documentSnapshot.getString(KEY_ARTIST);
+                        Log.d(TAG, "song name: "+song_name);
+                        Log.d(TAG, "artist_name: "+artist_name);
+                        song=song_name;
+                        artist=artist_name;
+
+                        noticication=new NotificationCompat.Builder(context,Channel_id)
+                                .setSmallIcon( R.drawable.ic_music_note)
 //                    .setContentText(track.getCompany())
-                    .setContentTitle(track.getTitle())
-                    .setContentText(track.getArtist())
-                    .setLargeIcon(icon)
-                    .setOnlyAlertOnce(true)
-                    .setShowWhen(false)
-                    .addAction(playbutton,"Play",pendingIntentPLay)
-                    .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                            //.setShowActionsInCompactView(1)
-                            .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setContentTitle(song)
+                                .setContentText(artist)
+                                .setLargeIcon(icon)
+                                .setOnlyAlertOnce(true)
+                                .setShowWhen(false)
+                                .addAction(playbutton,"Play",pendingIntentPLay)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
 
-                    .setPriority(NotificationCompat.PRIORITY_LOW)
-                    .build();
+                                .setPriority(NotificationCompat.PRIORITY_LOW)
+                                .build();
 
-            notificationManagerCompat.notify(1,noticication);
+                        notificationManagerCompat.notify(1,noticication);
+                    }
+                }
+            });
         }
     }
 }
