@@ -2,6 +2,7 @@ package com.example.naada.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Animation mFabOpen,mFabClose;
     private ImageView profileImage;
     private TextView profileName,profileMail;
+    private CardView profileView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage=findViewById(R.id.profile_image);
         profileName=findViewById(R.id.profile_name);
         profileMail=findViewById(R.id.profile_mail);
+
+        profileView=findViewById(R.id.cordinate);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -134,15 +138,15 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isOpen){
-                    mDarkFab.setAnimation(mFabClose);
+//                    mDarkFab.setAnimation(mFabClose);
                     mMusicFab.setAnimation(mFabClose);
-                    mDarkFabText.setVisibility(View.INVISIBLE);
+//                    mDarkFabText.setVisibility(View.INVISIBLE);
                     mMusicFabText.setVisibility(View.INVISIBLE);
                     isOpen=false;
                 }else{
-                    mDarkFab.setAnimation(mFabOpen);
+//                    mDarkFab.setAnimation(mFabOpen);
                     mMusicFab.setAnimation(mFabOpen);
-                    mDarkFabText.setVisibility(View.VISIBLE);
+//                    mDarkFabText.setVisibility(View.VISIBLE);
                     mMusicFabText.setVisibility(View.VISIBLE);
                     isOpen=true;
                 }
@@ -150,27 +154,27 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         //Darkmode
-        mDarkFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dk=new Intent(ProfileActivity.this, NightMode.class);
-                startActivity(dk);
-                mDarkFab.setAnimation(mFabClose);
-                mMusicFab.setAnimation(mFabClose);
-                mDarkFabText.setVisibility(View.INVISIBLE);
-                mMusicFabText.setVisibility(View.INVISIBLE);
-                isOpen=false;
-            }
-        });
+//        mDarkFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               Intent dk=new Intent(ProfileActivity.this, NightMode.class);
+//                startActivity(dk);
+//                mDarkFab.setAnimation(mFabClose);
+//                mMusicFab.setAnimation(mFabClose);
+//                mDarkFabText.setVisibility(View.INVISIBLE);
+//                mMusicFabText.setVisibility(View.INVISIBLE);
+//                isOpen=false;
+//            }
+//        });
 
         mMusicFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent music_activity=new Intent(ProfileActivity.this,MusicPlayerActivity.class);
                 startActivity(music_activity);
-                mDarkFab.setAnimation(mFabClose);
+//                mDarkFab.setAnimation(mFabClose);
                 mMusicFab.setAnimation(mFabClose);
-                mDarkFabText.setVisibility(View.INVISIBLE);
+//                mDarkFabText.setVisibility(View.INVISIBLE);
                 mMusicFabText.setVisibility(View.INVISIBLE);
                 isOpen=false;
             }
