@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.naada.R;
 import com.example.naada.view.MainActivity;
@@ -36,10 +37,12 @@ public class BottomNavHelper extends androidx.coordinatorlayout.widget.Coordinat
                     case R.id.bottom_nav_residents:
                         context.startActivity(new Intent(context, ResidentsActivity.class));
                         ((Activity) context).overridePendingTransition(0, 0);
+                        ((Activity) context).finish();
                         break;
                     case R.id.bottom_nav_profile:
                         context.startActivity(new Intent(context, ProfileActivity.class));
                         ((Activity) context).overridePendingTransition(0, 0);
+                        ((Activity) context).finish();
                         break;
                 }
                 return false;
