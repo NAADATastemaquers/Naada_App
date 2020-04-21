@@ -12,29 +12,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:paddingTop="10dp"
-        android:text="@string/tastemaqers"
+        android:text="@string/naada"
         android:textColor="#eb2429"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/playerCardView"
         android:layout_width="305dp"
         android:layout_height="300dp"
+        android:layout_marginTop="32dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/details"
+        app:layout_constraintBottom_toTopOf="@+id/row1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.26">
+        app:layout_constraintTop_toBottomOf="@+id/logo">
 
         <ImageView
             android:id="@+id/imageAlbum"
@@ -50,7 +48,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo"
-            tools:ignore="ContentDescription,UnusedAttribute"></ImageView>
+            tools:ignore="ContentDescription,UnusedAttribute">
+        </ImageView>
 
     </androidx.cardview.widget.CardView>
 
@@ -63,12 +62,11 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerCardView"
-        app:layout_constraintVertical_bias="0.129">
+        tools:layout_editor_absoluteY="459dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/playerCardView">
 
         <TextView
             android:id="@+id/number"
@@ -80,7 +78,8 @@
             android:text="@string/_372k"
             android:textColor="@color/music_1strow"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:targetApi="p" />
 
         <TextView
 
@@ -100,6 +99,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
             android:fontFamily="@font/poppins_semibold"
             android:lineHeight="22sp"
@@ -108,7 +108,6 @@
             android:textColor="@color/music_1strow"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_marginStart="36dp"
             tools:ignore="UnusedAttribute" />
 
         <TextView
@@ -129,21 +128,21 @@
 
     <LinearLayout
         android:id="@+id/details"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/row1"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp"
+        android:layout_marginTop="32dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/row1">
 
         <TextView
             android:id="@+id/song_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
@@ -159,7 +158,7 @@
 
         <TextView
             android:id="@+id/artist_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
@@ -173,7 +172,7 @@
 
         <TextView
             android:id="@+id/other_details"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins"
@@ -192,13 +191,14 @@
         android:layout_height="40dp"
         android:layout_below="@+id/details"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details"
-        app:layout_constraintVertical_bias="0.279">
+        app:layout_constraintTop_toBottomOf="@+id/details">
 
         <ImageButton
             android:id="@+id/message"
@@ -207,8 +207,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/ic_insert_comment_black_24dp"
-            tools:ignore="ContentDescription">
-        </ImageButton>
+            tools:ignore="ContentDescription"></ImageButton>
 
         <ImageButton
             android:id="@+id/play"
@@ -216,8 +215,7 @@
             android:layout_height="40dp"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_play_circle_outline_black_24dp"
-            tools:ignore="ContentDescription">
-        </ImageButton>
+            tools:ignore="ContentDescription"></ImageButton>
 
         <ImageButton
             android:id="@+id/share"
@@ -226,14 +224,15 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:background="@drawable/ic_share_black_24dp"
-            tools:ignore="ContentDescription">
-        </ImageButton>
+            tools:ignore="ContentDescription"></ImageButton>
 
         <ImageView
             android:id="@+id/favoriteBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
+            android:contentDescription="@string/todo"
             app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
 
