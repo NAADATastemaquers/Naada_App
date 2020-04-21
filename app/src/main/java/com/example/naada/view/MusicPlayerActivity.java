@@ -87,7 +87,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         song=(TextView) findViewById(R.id.song_name);
         share=(ImageButton) findViewById(R.id.share);
         message=(ImageButton)findViewById(R.id.message);
-        svc=new Intent(this,BackgroundSoundService.class);
+        svc=new Intent(MusicPlayerActivity.this,BackgroundSoundService.class);
         album_image = findViewById(R.id.imageAlbum);
         favorite_btn = findViewById(R.id.favoriteBtn);
 
@@ -148,7 +148,8 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
 
         } else {
-            startService(new Intent(svc));
+//            startService(new Intent(svc));
+            this.startService(svc);
         }
 
 //        startService(svc);
@@ -310,7 +311,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             notificationManager.cancelAll();
         }
-        //unregisterReceiver(broadcastReceiver);
+        unregisterReceiver(broadcastReceiver);
     }
 
     public class FavAsyncTask extends AsyncTask<Void,Void,Void>{
