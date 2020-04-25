@@ -53,7 +53,6 @@ public class Track {
 //                if (documentSnapshot.exists()){
 //                    String album_image_url = documentSnapshot.getString(KEY_IMAGE);
 //                    Log.d(TAG, "album_image_url: "+album_image_url);
-//                    Glide.with().load(album_image_url).centerCrop().load(album_image_url).into(image);
 //                }
 //            }
 //        });
