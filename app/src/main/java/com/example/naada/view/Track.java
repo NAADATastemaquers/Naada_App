@@ -47,16 +47,16 @@ public class Track {
     }
 
     public int getImage() {
-        contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if (documentSnapshot.exists()){
-                    String album_image_url = documentSnapshot.getString(KEY_IMAGE);
-                    Log.d(TAG, "album_image_url: "+album_image_url);
+//        contentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+//                if (documentSnapshot.exists()){
+//                    String album_image_url = documentSnapshot.getString(KEY_IMAGE);
+//                    Log.d(TAG, "album_image_url: "+album_image_url);
 //                    Glide.with().load(album_image_url).centerCrop().load(album_image_url).into(image);
-                }
-            }
-        });
+//                }
+//            }
+//        });
         return image;
     }
 
