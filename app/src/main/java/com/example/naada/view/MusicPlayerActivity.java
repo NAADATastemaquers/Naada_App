@@ -143,7 +143,10 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        UserEmail = acct.getEmail();
+        try{
+            UserEmail = acct.getEmail();
+        }catch (Exception iggnored){}
+
         if (isMyServiceRunning(BackgroundSoundService.class)) {
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
 
