@@ -9,6 +9,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -41,8 +43,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +69,10 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
     GoogleSignInClient mGoogleSignInClient;
     private ImageView BackBtn;
     private fav_details fav_details;
-
+    URL ImageUrl = null;
+    InputStream is = null;
+    Bitmap bmImg = null;
+    ImageView imageView= null;
     private static final String KEY_ALBUM="album";
     private static final String KEY_ARTIST= "artist";
     private static final String KEY_DESCRIPTION= "description";
@@ -110,6 +117,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                     artist.setText(artist_name);
                     details.setText(album_name);
                     Glide.with(MusicPlayerActivity.this).load(album_image_url).centerCrop().load(album_image_url).into(album_image);
+
                     try{
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -143,7 +151,10 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        UserEmail = acct.getEmail();
+        try{
+            UserEmail = acct.getEmail();
+      }catch(Exception ignored){
+            }
         if (isMyServiceRunning(BackgroundSoundService.class)) {
             //stopService(new Intent(MusicPlayerActivity.this, BackgroundSoundService.class));
 
@@ -155,7 +166,7 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
 //        startService(svc);
 
         try{
-            track=new Track(song.getText().toString(),artist.getText().toString(),R.drawable.player);
+            track=new Track(song.getText().toString(),artist.getText().toString(),R.drawable.naada_logo);
         }catch(Exception ignored){
         }
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
@@ -356,6 +367,25 @@ public class MusicPlayerActivity extends AppCompatActivity implements playable, 
                 }
             });
             return null;
+        }
+    }
+    public class GetBitmapImg extends  AsyncTask<String, Void, Bitmap>{
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            try {
+                ImageUrl = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection) ImageUrl.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+                is = conn.getInputStream();
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                bmImg = BitmapFactory.decodeStream(is, null, options);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bmImg;
         }
     }
 }

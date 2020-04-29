@@ -22,13 +22,8 @@ public class BackgroundSoundService extends Service {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference contentRef= db.collection("Stream").document("Stream_URL");
-//    public String url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
     private static final String SONG_URL="URL";
     public String url;
-//    public static MediaPlayer player;
-
-
-
 
     private static final String TAG = "Music_stream_link";
         public static MediaPlayer player;
