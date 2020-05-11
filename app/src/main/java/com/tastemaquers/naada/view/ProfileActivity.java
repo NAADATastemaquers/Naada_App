@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.tastemaquers.naada.R;
 import com.tastemaquers.naada.data.adapters.FavSongsAdapter;
 import com.tastemaquers.naada.data.adapters.fav_details;
@@ -55,6 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImage;
     private TextView profileName,profileMail;
     private CardView profileView;
+    private Button PhoneLogout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +69,36 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage=findViewById(R.id.profile_image);
         profileName=findViewById(R.id.profile_name);
         profileMail=findViewById(R.id.profile_mail);
+        PhoneLogout=findViewById(R.id.phoneLogout);
 
         profileView=findViewById(R.id.cordinate);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
-        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        userEmail = acct.getEmail();
-        Log.d(TAG, "setupRecyclerView: "+ userEmail);
+        PhoneLogout.setVisibility(View.GONE);
 
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        final GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+
+        Log.d(TAG, "setupRecyclerView: "+ userEmail);
         if(acct!=null){
+            // Build a GoogleSignInClient with the options specified by gso.
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            userEmail = acct.getEmail();
             String name=acct.getDisplayName();
             String email=acct.getEmail();
             Uri imageUrl=acct.getPhotoUrl();
             profileMail.setText(email);
             profileName.setText(name);
             Glide.with(ProfileActivity.this).load(imageUrl).centerCrop().load(imageUrl).into(profileImage);
+        }
+        if(firebaseUser!=null){
+            PhoneLogout.setVisibility(View.VISIBLE);
+            profileName.setVisibility(View.GONE);
+            profileMail.setText("Logged in using your phone number");
         }
 
         mMainFab=findViewById(R.id.main_fab);
@@ -98,20 +110,33 @@ public class ProfileActivity extends AppCompatActivity {
         mFabClose=AnimationUtils.loadAnimation(ProfileActivity.this,R.anim.fab_close);
 
         gSignOut=findViewById(R.id.signOut);
-        gSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    // ...
-                    case R.id.signOut:
-                        signOut();
-                        Intent LoginActivity=new Intent(ProfileActivity.this, LoginActivity.class);
-                        startActivity(LoginActivity);
-                        finish();
-                        break;
+        if(firebaseUser==null){
+
+            gSignOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        // ...
+                        case R.id.signOut:
+                            signOut();
+                            Intent LoginActivity=new Intent(ProfileActivity.this, LoginActivity.class);
+                            startActivity(LoginActivity);
+                            finish();
+                            break;
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            PhoneLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent LoginActivity=new Intent(ProfileActivity.this, LoginActivity.class);
+                    startActivity(LoginActivity);
+                    finish();
+                }
+            });
+        }
 
 //        Merge everything from here
 

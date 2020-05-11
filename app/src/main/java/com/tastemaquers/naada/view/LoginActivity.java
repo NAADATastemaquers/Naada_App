@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.tastemaquers.naada.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -29,7 +31,7 @@ public class  LoginActivity extends AppCompatActivity {
     private Button googleSignin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=0;
-    Button Facebook;
+    Button phone;
 
 
     @Override
@@ -93,15 +95,15 @@ public class  LoginActivity extends AppCompatActivity {
             }
         });
 
-        //facebook
-        Facebook=findViewById(R.id.fblogin);
-        Facebook.setOnClickListener(new View.OnClickListener() {
+        phone=findViewById(R.id.phonelogin);
+        phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent fb=new Intent(LoginActivity.this,FacebookActivity.class);
-                startActivity(fb);
+                Intent phone=new Intent(LoginActivity.this,PhoneActivity.class);
+                startActivity(phone);
             }
         });
+
     }
 
     private boolean isConnected(){
@@ -118,6 +120,13 @@ public class  LoginActivity extends AppCompatActivity {
         if(account!=null){
             Intent mainActivity=new Intent(LoginActivity.this,MainActivity.class);
             startActivity(mainActivity);
+            finish();
+        }
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null){
+            Intent main = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(main);
             finish();
         }
     }

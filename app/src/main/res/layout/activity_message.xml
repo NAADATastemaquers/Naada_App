@@ -13,13 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_above="@+id/userInput"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/userInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/artist_name" />
 
     <EditText
         android:id="@+id/userInput"
@@ -69,10 +69,12 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="The Neutral Dreams"
         android:textColor="@color/chat_heading"
-        android:textSize="26sp"
+        android:textAlignment="center"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/artist_name"
@@ -81,11 +83,9 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Ocean Trix"
         android:textColor="@color/chat_suBHeading"
-        app:layout_constraintBottom_toTopOf="@+id/conversation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/song_name"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintTop_toBottomOf="@+id/song_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
