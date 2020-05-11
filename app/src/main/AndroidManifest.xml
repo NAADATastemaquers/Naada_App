@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tastemaquers.naada">
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@mipmap/icon_naada_round"
@@ -13,36 +14,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name="com.tastemaquers.naada.view.MessageActivity"
-            android:parentActivityName="com.tastemaquers.naada.view.MusicPlayerActivity"/>
+        <activity android:name=".view.PhoneActivity"></activity>
+        <activity
+            android:name=".view.MessageActivity"
+            android:parentActivityName=".view.MusicPlayerActivity" />
+
         <service
-            android:name="com.tastemaquers.naada.view.service.BackgroundSoundService"
+            android:name=".view.service.BackgroundSoundService"
             android:enabled="true" />
 
-        <activity android:name="com.tastemaquers.naada.view.SignUp"
-            android:parentActivityName="com.tastemaquers.naada.view.MainActivity"/>
-        <activity android:name="com.tastemaquers.naada.view.MusicPlayerActivity"
-            android:parentActivityName="com.tastemaquers.naada.view.MainActivity"/>
-        <activity android:name="com.tastemaquers.naada.view.LoginActivity" />
-        <activity android:name="com.tastemaquers.naada.view.NightMode"/>
-        <activity android:name="com.tastemaquers.naada.view.IntroActivity">
+        <activity
+            android:name=".view.SignUp"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.MusicPlayerActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.NightMode" />
+        <activity android:name=".view.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tastemaquers.naada.view.MainActivity" />
-        <activity android:name="com.tastemaquers.naada.view.ProfileActivity"
-            android:parentActivityName="com.tastemaquers.naada.view.MainActivity"/>
-        <activity android:name="com.tastemaquers.naada.view.FacebookActivity" />
+        <activity android:name=".view.MainActivity" />
+        <activity
+            android:name=".view.ProfileActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity android:name=".view.FacebookActivity" />
 
         <receiver
-            android:name="com.tastemaquers.naada.view.service.NotificationActionServices"
+            android:name=".view.service.NotificationActionServices"
             android:enabled="true" />
 
         <service
-            android:name="com.tastemaquers.naada.view.service.OnClearFromRecentService"
+            android:name=".view.service.OnClearFromRecentService"
             android:enabled="true" />
 
         <activity
@@ -58,15 +65,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="@string/fb_login_protocol_scheme"
+                <data
+                    android:scheme="@string/fb_login_protocol_scheme"
                     tools:ignore="ManifestResource" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tastemaquers.naada.view.ResidentsActivity"
-            android:parentActivityName="com.tastemaquers.naada.view.MainActivity"/>
-        <activity android:name="com.tastemaquers.naada.view.artist_bio"/>
-
-<!--        <activity android:name=".view.ResidentsActivity" />-->
+        <activity
+            android:name=".view.ResidentsActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity android:name=".view.artist_bio" /> <!-- <activity android:name=".view.ResidentsActivity" /> -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

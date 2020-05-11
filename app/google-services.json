@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:241190777699:android:685f7c99a13c89072f5956",
         "android_client_info": {
-          "package_name": "com.example.naada"
+          "package_name": "com.tastemaquers.naada"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "241190777699-2jlclb7i3pfe7ctelilbef9838ke2l3r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.naada",
+            "package_name": "com.tastemaquers.naada",
             "certificate_hash": "ab6762a6e839d9ae77b1cbfcf163a0bc139800c9"
           }
         },
